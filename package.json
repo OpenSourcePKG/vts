@@ -3,7 +3,13 @@
   "bugs": {
     "url": "https://github.com/OpenSourcePKG/vts/issues"
   },
+  "dependencies": {
+    "moment": "^2.29.4"
+  },
   "description": " A data validator fully written in Typescript.",
+  "devDependencies": {
+    "typescript": "^4.9.5"
+  },
   "homepage": "https://github.com/OpenSourcePKG/vts#readme",
   "license": "MIT",
   "name": "vts",
@@ -11,11 +17,6 @@
     "type": "git",
     "url": "git+https://github.com/OpenSourcePKG/vts.git"
   },
-  "version": "1.0.0",
-  "devDependencies": {
-    "typescript": "^4.9.5"
-  },
-  "dependencies": {
-    "moment": "^2.29.4"
-  }
+  "type": "module",
+  "version": "1.0.0"
 }
