@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "forceConsistentCasingInFileNames": true,
+    "module": "NodeNext",
+    "noEmit": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "rootDir": "./src",
+    "strict": true,
+    "target": "ES2020"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "author": "https://github.com/Choppel",
+  "bugs": {
+    "url": "https://github.com/OpenSourcePKG/vts/issues"
+  },
+  "description": " A data validator fully written in Typescript.",
+  "homepage": "https://github.com/OpenSourcePKG/vts#readme",
+  "license": "MIT",
+  "name": "vts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OpenSourcePKG/vts.git"
+  },
+  "version": "1.0.0",
+  "devDependencies": {
+    "typescript": "^4.9.5"
+  },
+  "dependencies": {
+    "moment": "^2.29.4"
+  }
+}
