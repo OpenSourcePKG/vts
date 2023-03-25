@@ -1,22 +1,27 @@
-import {AbstractClass, Class, FunctionOfAnyType, RecordOf} from './types.js';
-import {Schema} from './vts/schema.js';
-import {ArraySchema} from './vts/schemas/arraySchema.js';
-import {BooleanSchema} from './vts/schemas/booleanSchema.js';
-import {DateSchema} from './vts/schemas/dateSchema.js';
-import {DateStringSchema, DateStringSchemaValidateOptions} from './vts/schemas/dateStringSchema.js';
-import {EqualSchema} from './vts/schemas/equalSchema.js';
-import {ErrorSchema} from './vts/schemas/errorSchema.js';
-import {InstanceofSchema} from './vts/schemas/instanceofSchema.js';
-import {NullSchema} from './vts/schemas/nullSchema.js';
-import {NumberSchema} from './vts/schemas/numberSchema.js';
-import {Object2Schema} from './vts/schemas/object2Schema.js';
-import {ObjectSchema, ObjectSchemaItems, ObjectSchemaOptions} from './vts/schemas/objectSchema.js';
-import {OptionalSchema} from './vts/schemas/objectSchema/optionalSchema.js';
-import {OrSchema} from './vts/schemas/orSchema.js';
-import {RegExpSchema} from './vts/schemas/regExpSchema.js';
-import {StringSchema} from './vts/schemas/stringSchema.js';
-import {UndefinedSchema} from './vts/schemas/undefinedSchema.js';
-import {UnknownSchema} from './vts/schemas/unknownSchema.js';
+import {Schema} from './schema.js';
+import {ArraySchema} from './schemas/arraySchema.js';
+import {BooleanSchema} from './schemas/booleanSchema.js';
+import {DateSchema} from './schemas/dateSchema.js';
+import {DateStringSchema, DateStringSchemaValidateOptions} from './schemas/dateStringSchema.js';
+import {EqualSchema} from './schemas/equalSchema.js';
+import {ErrorSchema} from './schemas/errorSchema.js';
+import {InstanceofSchema} from './schemas/instanceofSchema.js';
+import {NullSchema} from './schemas/nullSchema.js';
+import {NumberSchema} from './schemas/numberSchema.js';
+import {Object2Schema} from './schemas/object2Schema.js';
+import {ObjectSchema, ObjectSchemaItems, ObjectSchemaOptions} from './schemas/objectSchema.js';
+import {OptionalSchema} from './schemas/objectSchema/optionalSchema.js';
+import {OrSchema} from './schemas/orSchema.js';
+import {RegExpSchema} from './schemas/regExpSchema.js';
+import {StringSchema} from './schemas/stringSchema.js';
+import {UndefinedSchema} from './schemas/undefinedSchema.js';
+import {UnknownSchema} from './schemas/unknownSchema.js';
+
+export type AbstractClass<T> = (abstract new (...args: any[]) => T);
+export type RecordOf<Type> = Record<string, Type | undefined>;
+export type ExtractSchemaType<Type> = Type extends Schema<infer X> ? X : never;
+export type SchemaErrors = (string | Record<string, SchemaErrors>)[];
+export type SchemaOptions = RecordOf<unknown>;
 
 export class Vts {
 
@@ -48,7 +53,7 @@ export class Vts {
     return new EqualSchema(false);
   }
 
-  public static instanceof<S, T extends Class<S>>(_constructor: T): InstanceofSchema<S, T> {
+  public static instanceof<S, T extends AbstractClass<S>>(_constructor: T): InstanceofSchema<S, T> {
     return new InstanceofSchema(_constructor);
   }
 
@@ -118,7 +123,7 @@ export class Vts {
     return this.isInstanceOf(_val, Error);
   }
 
-  public static isFunction<T extends FunctionOfAnyType>(_val: unknown): _val is T {
+  public static isFunction<T extends (..._args: any[]) => any>(_val: unknown): _val is T {
     return typeof _val === 'function';
   }
 
