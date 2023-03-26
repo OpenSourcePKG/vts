@@ -228,7 +228,6 @@ for (const schemaType of Object.values(SchemaType)) {
     if (testSchemas[schemaType].validate(testData[dataType], errors) === expectedResult) {
       successCnt += 1;
     } else {
-      // testSchemas[schemaType].validate(testData[dataType], errors)
       console.error(`ERR: schema "${schemaType}" > data "${dataType}"`, errors);
       failCnt += 1;
     }
