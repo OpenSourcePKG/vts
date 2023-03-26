@@ -1,7 +1,10 @@
-import moment from 'moment';
+import { Vts } from '../vts.js';
 import { StringSchema } from './stringSchema.js';
+export const DateStringSchemaTestDefault = (_data) => !Vts.isNaN(Date.parse(_data));
 export class DateStringSchema extends StringSchema {
-    constructor(_options) {
+    constructor(_options = {
+        test: DateStringSchemaTestDefault
+    }) {
         super();
         this._options = _options;
     }
@@ -9,18 +12,9 @@ export class DateStringSchema extends StringSchema {
         if (!super.validate(_data, _errors)) {
             return false;
         }
-        const mom = moment(new Date(_data));
-        if (!mom.isValid()) {
-            this.addError(_errors, 'not a valid date');
+        if (!this._options.test(_data)) {
+            this.addError(_errors, 'not a valid date string');
             return false;
-        }
-        if (this._options?.test) {
-            const test = this._options?.test(mom);
-            if (test !== _data) {
-                console.log(test, _data);
-                this.addError(_errors, 'wrong format');
-                return false;
-            }
         }
         return true;
     }

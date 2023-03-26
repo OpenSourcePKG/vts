@@ -1,0 +1,1 @@
+export const DateStringInvalidData = '2020-09-32';

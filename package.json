@@ -3,9 +3,6 @@
   "bugs": {
     "url": "https://github.com/OpenSourcePKG/vts/issues"
   },
-  "dependencies": {
-    "moment": "^2.29.4"
-  },
   "description": " A data validator fully written in Typescript.",
   "devDependencies": {
     "ts-node": "^10.9.1",

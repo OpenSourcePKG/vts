@@ -120,7 +120,7 @@ export class Vts {
   }
 
   public static isDate(_val: unknown): _val is Date {
-    return this.isInstanceOf(_val, Date);
+    return this.isInstanceOf(_val, Date) && _val.toString() !== 'Invalid Date';
   }
 
   public static isError(_val: unknown): _val is Error {

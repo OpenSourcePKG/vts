@@ -1,14 +1,19 @@
-import moment from 'moment';
-import {SchemaErrors} from '../vts.js';
+import {SchemaErrors, Vts} from '../vts.js';
 import {StringSchema} from './stringSchema.js';
 
+type DateStringTestCallback = (_data: string) => boolean;
+
 export interface DateStringSchemaValidateOptions {
-  test: (_data: moment.Moment) => string;
+  test: DateStringTestCallback;
 }
+
+export const DateStringSchemaTestDefault: DateStringTestCallback = (_data) => !Vts.isNaN(Date.parse(_data));
 
 export class DateStringSchema extends StringSchema {
 
-  public constructor(private readonly _options?: DateStringSchemaValidateOptions) {
+  public constructor(private readonly _options: DateStringSchemaValidateOptions = {
+    test: DateStringSchemaTestDefault
+  }) {
     super();
   }
 
@@ -19,18 +24,9 @@ export class DateStringSchema extends StringSchema {
     if (!super.validate(_data, _errors)) {
       return false;
     }
-    const mom = moment(new Date(_data));
-    if (!mom.isValid()) {
-      this.addError(_errors, 'not a valid date');
+    if (!this._options.test(_data)) {
+      this.addError(_errors, 'not a valid date string');
       return false;
-    }
-    if (this._options?.test) {
-      const test = this._options?.test(mom);
-      if (test !== _data) {
-        console.log(test, _data);
-        this.addError(_errors, 'wrong format');
-        return false;
-      }
     }
     return true;
   }

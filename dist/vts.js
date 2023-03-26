@@ -83,7 +83,7 @@ export class Vts {
         return typeof _val === 'boolean';
     }
     static isDate(_val) {
-        return this.isInstanceOf(_val, Date);
+        return this.isInstanceOf(_val, Date) && _val.toString() !== 'Invalid Date';
     }
     static isError(_val) {
         return this.isInstanceOf(_val, Error);

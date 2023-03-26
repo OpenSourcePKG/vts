@@ -6,6 +6,7 @@ import {ArrayOfStringData, ArrayOfStringSchema} from './types/arrayOfString.js';
 import {BooleanData, BooleanSchema} from './types/boolean.js';
 import {DateData, DateSchema} from './types/date.js';
 import {DateStringData, DateStringSchema} from './types/dateString.js';
+import {DateStringInvalidData} from './types/dateStringInvalid.js';
 import {EnumData, EnumSchema} from './types/enum.js';
 import {EqualToEmptyStringData, EqualToEmptyStringSchema} from './types/equalToEmptyString.js';
 import {EqualToNullData, EqualToNullSchema} from './types/equalToNull.js';
@@ -57,6 +58,7 @@ enum DataType {
   boolean = 'boolean',
   date = 'date',
   dateString = 'dateString',
+  dateStringInvalid = 'dateStringInvalid',
   equalToEmptyString = 'equalToEmptyString',
   equalToNull = 'equalToNull',
   enum = 'enum',
@@ -112,6 +114,7 @@ const testData: {
   [DataType.boolean]: BooleanData,
   [DataType.date]: DateData,
   [DataType.dateString]: DateStringData,
+  [DataType.dateStringInvalid]: DateStringInvalidData,
   [DataType.equalToEmptyString]: EqualToEmptyStringData,
   [DataType.equalToNull]: EqualToNullData,
   [DataType.enum]: EnumData,
@@ -199,6 +202,7 @@ const tests: {
   },
   [SchemaType.orStringNull]: {
     [DataType.dateString]: true,
+    [DataType.dateStringInvalid]: true,
     [DataType.equalToEmptyString]: true,
     [DataType.equalToNull]: true,
     [DataType.enum]: true,
@@ -210,6 +214,7 @@ const tests: {
   },
   [SchemaType.string]: {
     [DataType.dateString]: true,
+    [DataType.dateStringInvalid]: true,
     [DataType.equalToEmptyString]: true,
     [DataType.enum]: true,
     [DataType.string]: true
