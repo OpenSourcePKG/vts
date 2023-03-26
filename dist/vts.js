@@ -31,6 +31,9 @@ export class Vts {
     static equal(_value) {
         return new EqualSchema(_value);
     }
+    static enum(_value) {
+        return Vts.or([...Object.values(_value).map((_val) => Vts.equal(_val))]);
+    }
     static error() {
         return new ErrorSchema();
     }

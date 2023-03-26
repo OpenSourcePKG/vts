@@ -6,6 +6,7 @@ import {ArrayOfStringData, ArrayOfStringSchema} from './types/arrayOfString.js';
 import {BooleanData, BooleanSchema} from './types/boolean.js';
 import {DateData, DateSchema} from './types/date.js';
 import {DateStringData, DateStringSchema} from './types/dateString.js';
+import {EnumData, EnumSchema} from './types/enum.js';
 import {EqualToEmptyStringData, EqualToEmptyStringSchema} from './types/equalToEmptyString.js';
 import {EqualToNullData, EqualToNullSchema} from './types/equalToNull.js';
 import {ErrorData, ErrorSchema} from './types/error.js';
@@ -32,6 +33,7 @@ enum SchemaType {
   dateString = 'dateString',
   equalToEmptyString = 'equalToEmptyString',
   equalToNull = 'equalToNull',
+  enum = 'enum',
   error = 'error',
   instanceOfAbstractClass1 = 'instanceOfAbstractClass1',
   instanceOfClass1 = 'instanceOfClass1',
@@ -57,6 +59,7 @@ enum DataType {
   dateString = 'dateString',
   equalToEmptyString = 'equalToEmptyString',
   equalToNull = 'equalToNull',
+  enum = 'enum',
   error = 'error',
   instanceOfAbstractClass1 = 'instanceOfAbstractClass1',
   instanceOfClass1 = 'instanceOfClass1',
@@ -84,6 +87,7 @@ const testSchemas: {
   [SchemaType.equalToEmptyString]: EqualToEmptyStringSchema,
   [SchemaType.equalToNull]: EqualToNullSchema,
   [SchemaType.error]: ErrorSchema,
+  [SchemaType.enum]: EnumSchema,
   [SchemaType.instanceOfAbstractClass1]: InstanceOfAbstractClass1Schema,
   [SchemaType.instanceOfClass1]: InstanceOfClass1Schema,
   [SchemaType.instanceOfClass2]: InstanceOfClass2Schema,
@@ -110,6 +114,7 @@ const testData: {
   [DataType.dateString]: DateStringData,
   [DataType.equalToEmptyString]: EqualToEmptyStringData,
   [DataType.equalToNull]: EqualToNullData,
+  [DataType.enum]: EnumData,
   [DataType.error]: ErrorData,
   [DataType.instanceOfAbstractClass1]: InstanceOfAbstractClass1Data,
   [DataType.instanceOfClass1]: InstanceOfClass1Data,
@@ -156,6 +161,9 @@ const tests: {
     [DataType.equalToNull]: true,
     [DataType.null]: true
   },
+  [SchemaType.enum]: {
+    [DataType.enum]: true
+  },
   [SchemaType.error]: {
     [DataType.error]: true
   },
@@ -193,6 +201,7 @@ const tests: {
     [DataType.dateString]: true,
     [DataType.equalToEmptyString]: true,
     [DataType.equalToNull]: true,
+    [DataType.enum]: true,
     [DataType.null]: true,
     [DataType.string]: true
   },
@@ -202,6 +211,7 @@ const tests: {
   [SchemaType.string]: {
     [DataType.dateString]: true,
     [DataType.equalToEmptyString]: true,
+    [DataType.enum]: true,
     [DataType.string]: true
   },
   [SchemaType.undefined]: {
@@ -218,6 +228,7 @@ for (const schemaType of Object.values(SchemaType)) {
     if (testSchemas[schemaType].validate(testData[dataType], errors) === expectedResult) {
       successCnt += 1;
     } else {
+      // testSchemas[schemaType].validate(testData[dataType], errors)
       console.error(`ERR: schema "${schemaType}" > data "${dataType}"`, errors);
       failCnt += 1;
     }

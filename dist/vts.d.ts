@@ -27,6 +27,7 @@ export declare class Vts {
     static date(): DateSchema;
     static dateString(_options?: DateStringSchemaValidateOptions): DateStringSchema;
     static equal<S>(_value: S): EqualSchema<S>;
+    static enum<T>(_value: Record<any, T>): OrSchema<EqualSchema<T>>;
     static error(): ErrorSchema;
     static false(): EqualSchema<false>;
     static instanceof<S, T extends AbstractClass<S>>(_constructor: T): InstanceofSchema<S, T>;

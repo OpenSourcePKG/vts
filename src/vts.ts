@@ -45,6 +45,10 @@ export class Vts {
     return new EqualSchema(_value);
   }
 
+  public static enum<T>(_value: Record<any, T>): OrSchema<EqualSchema<T>> {
+    return Vts.or([...Object.values(_value).map((_val) => Vts.equal(_val))]);
+  }
+
   public static error(): ErrorSchema {
     return new ErrorSchema();
   }
