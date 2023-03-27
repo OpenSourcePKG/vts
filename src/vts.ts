@@ -10,6 +10,7 @@ import {NullSchema} from './schemas/nullSchema.js';
 import {NumberSchema} from './schemas/numberSchema.js';
 import {Object2Schema} from './schemas/object2Schema.js';
 import {ObjectSchema, ObjectSchemaItems, ObjectSchemaOptions} from './schemas/objectSchema.js';
+import {DiscriminatorSchema} from './schemas/objectSchema/discriminatorSchema.js';
 import {OptionalSchema} from './schemas/objectSchema/optionalSchema.js';
 import {OrSchema} from './schemas/orSchema.js';
 import {RegExpSchema} from './schemas/regExpSchema.js';
@@ -37,6 +38,10 @@ export class Vts {
 
   public static dateString(_options?: DateStringSchemaValidateOptions): DateStringSchema {
     return new DateStringSchema(_options);
+  }
+
+  public static discriminator<S extends Schema<unknown>>(_schema: S): DiscriminatorSchema<S> {
+    return new DiscriminatorSchema(_schema);
   }
 
   public static equal<S>(_value: S): EqualSchema<S> {

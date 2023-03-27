@@ -1,5 +1,6 @@
 import {Schema, SchemaErrors, SchemaOptions} from '../schema.js';
 import {ExtractSchemaResultType, RecordOf, Vts} from '../vts.js';
+import {DiscriminatorSchema} from './objectSchema/discriminatorSchema.js';
 import {OptionalSchema} from './objectSchema/optionalSchema.js';
 
 export interface ObjectSchemaItems {
@@ -69,15 +70,20 @@ export class ObjectSchema<Items extends ObjectSchemaItems> extends Schema<unknow
 
     for (const schemaKey of Object.keys(this._schemaItems)) {
       const schema = this._schemaItems[schemaKey];
+      const keyIsInData = schemaKey in _data;
+      const valueErrors: SchemaErrors = [];
+      const validated = keyIsInData ? schema.validate(_data[schemaKey], valueErrors, _options) : false;
 
-      if (!Vts.isInstanceOf(schema, OptionalSchema) && !(schemaKey in _data)) {
+      if (Vts.isInstanceOf(schema, DiscriminatorSchema) && (!keyIsInData || !validated)) {
+        return false;
+      }
+
+      if (!Vts.isInstanceOf(schema, OptionalSchema) && !keyIsInData) {
         this.addErrors(objectErrors, schemaKey, ['missing required key']);
       }
-      if (schemaKey in _data) {
-        const valueErrors: SchemaErrors = [];
-        if (!schema.validate(_data[schemaKey], valueErrors, _options)) {
-          this.addErrors(objectErrors, schemaKey, valueErrors);
-        }
+
+      if (keyIsInData && !validated) {
+        this.addErrors(objectErrors, schemaKey, valueErrors);
       }
     }
 

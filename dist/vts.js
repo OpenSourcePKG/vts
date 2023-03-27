@@ -9,6 +9,7 @@ import { NullSchema } from './schemas/nullSchema.js';
 import { NumberSchema } from './schemas/numberSchema.js';
 import { Object2Schema } from './schemas/object2Schema.js';
 import { ObjectSchema } from './schemas/objectSchema.js';
+import { DiscriminatorSchema } from './schemas/objectSchema/discriminatorSchema.js';
 import { OptionalSchema } from './schemas/objectSchema/optionalSchema.js';
 import { OrSchema } from './schemas/orSchema.js';
 import { RegExpSchema } from './schemas/regExpSchema.js';
@@ -27,6 +28,9 @@ export class Vts {
     }
     static dateString(_options) {
         return new DateStringSchema(_options);
+    }
+    static discriminator(_schema) {
+        return new DiscriminatorSchema(_schema);
     }
     static equal(_value) {
         return new EqualSchema(_value);

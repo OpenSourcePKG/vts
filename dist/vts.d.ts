@@ -10,6 +10,7 @@ import { NullSchema } from './schemas/nullSchema.js';
 import { NumberSchema } from './schemas/numberSchema.js';
 import { Object2Schema } from './schemas/object2Schema.js';
 import { ObjectSchema, ObjectSchemaItems, ObjectSchemaOptions } from './schemas/objectSchema.js';
+import { DiscriminatorSchema } from './schemas/objectSchema/discriminatorSchema.js';
 import { OptionalSchema } from './schemas/objectSchema/optionalSchema.js';
 import { OrSchema } from './schemas/orSchema.js';
 import { RegExpSchema } from './schemas/regExpSchema.js';
@@ -24,6 +25,7 @@ export declare class Vts {
     static boolean(): BooleanSchema;
     static date(): DateSchema;
     static dateString(_options?: DateStringSchemaValidateOptions): DateStringSchema;
+    static discriminator<S extends Schema<unknown>>(_schema: S): DiscriminatorSchema<S>;
     static equal<S>(_value: S): EqualSchema<S>;
     static enum<T>(_value: Record<any, T>): OrSchema<EqualSchema<T>>;
     static error(): ErrorSchema;

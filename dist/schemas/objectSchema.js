@@ -1,5 +1,6 @@
 import { Schema } from '../schema.js';
 import { Vts } from '../vts.js';
+import { DiscriminatorSchema } from './objectSchema/discriminatorSchema.js';
 import { OptionalSchema } from './objectSchema/optionalSchema.js';
 export class ObjectSchema extends Schema {
     constructor(_schemaItems, _options) {
@@ -24,14 +25,17 @@ export class ObjectSchema extends Schema {
         const objectErrors = {};
         for (const schemaKey of Object.keys(this._schemaItems)) {
             const schema = this._schemaItems[schemaKey];
-            if (!Vts.isInstanceOf(schema, OptionalSchema) && !(schemaKey in _data)) {
+            const keyIsInData = schemaKey in _data;
+            const valueErrors = [];
+            const validated = keyIsInData ? schema.validate(_data[schemaKey], valueErrors, _options) : false;
+            if (Vts.isInstanceOf(schema, DiscriminatorSchema) && (!keyIsInData || !validated)) {
+                return false;
+            }
+            if (!Vts.isInstanceOf(schema, OptionalSchema) && !keyIsInData) {
                 this.addErrors(objectErrors, schemaKey, ['missing required key']);
             }
-            if (schemaKey in _data) {
-                const valueErrors = [];
-                if (!schema.validate(_data[schemaKey], valueErrors, _options)) {
-                    this.addErrors(objectErrors, schemaKey, valueErrors);
-                }
+            if (keyIsInData && !validated) {
+                this.addErrors(objectErrors, schemaKey, valueErrors);
             }
         }
         if (!(this._options?.objectSchema?.ignoreAdditionalItems || _options?.objectSchema?.ignoreAdditionalItems)) {
