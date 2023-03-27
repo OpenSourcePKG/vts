@@ -19,9 +19,7 @@ import {UnknownSchema} from './schemas/unknownSchema.js';
 
 export type AbstractClass<T> = (abstract new (...args: any[]) => T);
 export type RecordOf<Type> = Record<string, Type | undefined>;
-export type ExtractSchemaType<Type> = Type extends Schema<infer X> ? X : never;
-export type SchemaErrors = (string | Record<string, SchemaErrors>)[];
-export type SchemaOptions = RecordOf<unknown>;
+export type ExtractSchemaResultType<Type> = Type extends Schema<infer X> ? X : never;
 
 export class Vts {
 

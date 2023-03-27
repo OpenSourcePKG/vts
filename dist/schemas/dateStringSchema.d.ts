@@ -1,4 +1,4 @@
-import { SchemaErrors } from '../vts.js';
+import { SchemaErrors } from '../schema.js';
 import { StringSchema } from './stringSchema.js';
 type DateStringTestCallback = (_data: string) => boolean;
 export interface DateStringSchemaValidateOptions {

@@ -1,5 +1,5 @@
-import {Schema} from '../schema.js';
-import {ExtractSchemaType, SchemaErrors, Vts} from '../vts.js';
+import {Schema, SchemaErrors} from '../schema.js';
+import {ExtractSchemaResultType, Vts} from '../vts.js';
 import {StringSchema} from './stringSchema.js';
 
 export class Object2Schema<KeySchema extends StringSchema, ValuesSchema extends Schema<unknown>>
@@ -15,7 +15,7 @@ export class Object2Schema<KeySchema extends StringSchema, ValuesSchema extends 
   public validate(
     _data: unknown,
     _errors: SchemaErrors
-  ): _data is Record<ExtractSchemaType<KeySchema>, ExtractSchemaType<ValuesSchema>> {
+  ): _data is Record<ExtractSchemaResultType<KeySchema>, ExtractSchemaResultType<ValuesSchema>> {
     if (!Vts.isObject(_data)) {
       this.addError(_errors, 'not an object');
       return false;

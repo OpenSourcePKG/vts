@@ -1,5 +1,5 @@
-import {SchemaErrors, Vts} from '../vts.js';
-import {Schema} from '../schema.js';
+import {Vts} from '../vts.js';
+import {Schema, SchemaErrors} from '../schema.js';
 
 export class StringSchema extends Schema<string> {
 

@@ -1,7 +1,7 @@
-import {Schema} from '../schema.js';
-import {ExtractSchemaType, SchemaErrors, SchemaOptions, Vts} from '../vts.js';
+import {Schema, SchemaErrors, SchemaOptions} from '../schema.js';
+import {ExtractSchemaResultType, Vts} from '../vts.js';
 
-export class ArraySchema<S extends Schema<unknown>> extends Schema<ExtractSchemaType<S>[]> {
+export class ArraySchema<S extends Schema<unknown>> extends Schema<ExtractSchemaResultType<S>[]> {
 
   public constructor(private readonly _type: S) {
     super();
@@ -11,7 +11,7 @@ export class ArraySchema<S extends Schema<unknown>> extends Schema<ExtractSchema
     _data: unknown,
     _errors: SchemaErrors,
     _options?: SchemaOptions
-  ): _data is ExtractSchemaType<S>[] {
+  ): _data is ExtractSchemaResultType<S>[] {
     if (!Vts.isArray(_data)) {
       this.addError(_errors, 'not an array');
       return false;

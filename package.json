@@ -10,7 +10,7 @@
   },
   "homepage": "https://github.com/OpenSourcePKG/vts#readme",
   "license": "MIT",
-  "main": "dist/vts.js",
+  "main": "dist/index.js",
   "scripts": {
     "build": "tsc --project src/tsconfig.json",
     "test": "ts-node --esm tests/index.ts"
@@ -21,6 +21,6 @@
     "url": "git+https://github.com/OpenSourcePKG/vts.git"
   },
   "type": "module",
-  "types": "dist/vts.d.ts",
+  "types": "dist/index.d.ts",
   "version": "1.0.0"
 }

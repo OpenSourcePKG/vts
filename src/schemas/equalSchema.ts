@@ -1,5 +1,4 @@
-import {Schema} from '../schema.js';
-import {SchemaErrors} from '../vts.js';
+import {Schema, SchemaErrors} from '../schema.js';
 
 export class EqualSchema<S> extends Schema<S> {
 

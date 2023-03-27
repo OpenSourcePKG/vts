@@ -1,5 +1,5 @@
-import {Schema} from '../schema.js';
-import {SchemaErrors, Vts} from '../vts.js';
+import {Schema, SchemaErrors} from '../schema.js';
+import {Vts} from '../vts.js';
 
 export class BooleanSchema extends Schema<boolean> {
 

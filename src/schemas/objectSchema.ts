@@ -1,5 +1,5 @@
-import {Schema} from '../schema.js';
-import {ExtractSchemaType, RecordOf, SchemaErrors, SchemaOptions, Vts} from '../vts.js';
+import {Schema, SchemaErrors, SchemaOptions} from '../schema.js';
+import {ExtractSchemaResultType, RecordOf, Vts} from '../vts.js';
 import {OptionalSchema} from './objectSchema/optionalSchema.js';
 
 export interface ObjectSchemaItems {
@@ -17,11 +17,11 @@ type ExtractRequired<T extends RecordOf<unknown>> = OmitByValue<T, OptionalSchem
 type ExtractOptional<T extends RecordOf<unknown>> = PickByValue<T, OptionalSchema<Schema<unknown>>>;
 
 type RequiredItems<T extends RecordOf<unknown>> = Required<{
-  [key in keyof ExtractRequired<T>]: ExtractSchemaType<T[key]>
+  [key in keyof ExtractRequired<T>]: ExtractSchemaResultType<T[key]>
 }>;
 
 type OptionalItems<T extends RecordOf<unknown>> = Partial<{
-  [key in keyof ExtractOptional<T>]: ExtractSchemaType<T[key]>
+  [key in keyof ExtractOptional<T>]: ExtractSchemaResultType<T[key]>
 }>;
 
 export interface ObjectSchemaOptions extends SchemaOptions {

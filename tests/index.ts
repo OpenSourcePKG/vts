@@ -1,5 +1,4 @@
-import {Schema} from '../src/schema.js';
-import {SchemaErrors} from '../src/vts.js';
+import {Schema, SchemaErrors} from '../src/schema.js';
 import {ArrayOfBooleanData, ArrayOfBooleanSchema} from './types/arrayOfBoolean.js';
 import {ArrayOfNumberOrStringData, ArrayOfNumberOrStringSchema} from './types/arrayOfNumberOrString.js';
 import {ArrayOfStringData, ArrayOfStringSchema} from './types/arrayOfString.js';

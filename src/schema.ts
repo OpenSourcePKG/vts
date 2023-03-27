@@ -1,4 +1,7 @@
-import {SchemaErrors, SchemaOptions} from './vts.js';
+import {RecordOf} from './vts.js';
+
+export type SchemaErrors = (string | Record<string, SchemaErrors>)[];
+export type SchemaOptions = RecordOf<unknown>;
 
 export abstract class Schema<Type> {
 

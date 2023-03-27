@@ -1,5 +1,5 @@
-import {Schema} from '../schema.js';
-import {AbstractClass, SchemaErrors, Vts} from '../vts.js';
+import {Schema, SchemaErrors} from '../schema.js';
+import {AbstractClass, Vts} from '../vts.js';
 
 export class InstanceofSchema<S, T extends AbstractClass<S>> extends Schema<S> {
 
