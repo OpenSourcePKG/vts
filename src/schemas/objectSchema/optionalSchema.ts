@@ -1,5 +1,5 @@
-import {Schema, SchemaErrors, SchemaOptions} from '../../schema.js';
-import {ExtractSchemaResultType, Vts} from '../../vts.js';
+import {ExtractSchemaResultType, Schema, SchemaErrors, SchemaOptions} from '../../schema.js';
+import {Vts} from '../../vts.js';
 
 export class OptionalSchema<S extends Schema<unknown>> extends Schema<ExtractSchemaResultType<S>> {
 

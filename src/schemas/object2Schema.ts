@@ -1,5 +1,5 @@
-import {Schema, SchemaErrors} from '../schema.js';
-import {ExtractSchemaResultType, Vts} from '../vts.js';
+import {ExtractSchemaResultType, Schema, SchemaErrors} from '../schema.js';
+import {Vts} from '../vts.js';
 import {StringSchema} from './stringSchema.js';
 
 export class Object2Schema<KeySchema extends StringSchema, ValuesSchema extends Schema<unknown>>

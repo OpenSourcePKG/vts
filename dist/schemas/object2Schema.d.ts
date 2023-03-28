@@ -1,5 +1,4 @@
-import { Schema, SchemaErrors } from '../schema.js';
-import { ExtractSchemaResultType } from '../vts.js';
+import { ExtractSchemaResultType, Schema, SchemaErrors } from '../schema.js';
 import { StringSchema } from './stringSchema.js';
 export declare class Object2Schema<KeySchema extends StringSchema, ValuesSchema extends Schema<unknown>> extends Schema<unknown> {
     private readonly _keySchema;

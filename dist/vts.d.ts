@@ -18,16 +18,16 @@ import { StringSchema } from './schemas/stringSchema.js';
 import { UndefinedSchema } from './schemas/undefinedSchema.js';
 import { UnknownSchema } from './schemas/unknownSchema.js';
 export type AbstractClass<T> = (abstract new (...args: any[]) => T);
+export type FunctionOfAnyType = (..._args: any[]) => any;
 export type RecordOf<Type> = Record<string, Type | undefined>;
-export type ExtractSchemaResultType<Type> = Type extends Schema<infer X> ? X : never;
 export declare class Vts {
     static array<S extends Schema<unknown>>(_type: S): ArraySchema<S>;
     static boolean(): BooleanSchema;
     static date(): DateSchema;
     static dateString(_options?: DateStringSchemaValidateOptions): DateStringSchema;
     static discriminator<S extends Schema<unknown>>(_schema: S): DiscriminatorSchema<S>;
-    static equal<S>(_value: S): EqualSchema<S>;
     static enum<T>(_value: Record<any, T>): OrSchema<EqualSchema<T>>;
+    static equal<S>(_value: S): EqualSchema<S>;
     static error(): ErrorSchema;
     static false(): EqualSchema<false>;
     static instanceof<S, T extends AbstractClass<S>>(_constructor: T): InstanceofSchema<S, T>;
@@ -46,7 +46,7 @@ export declare class Vts {
     static isBoolean(_val: unknown): _val is boolean;
     static isDate(_val: unknown): _val is Date;
     static isError(_val: unknown): _val is Error;
-    static isFunction<T extends (..._args: any[]) => any>(_val: unknown): _val is T;
+    static isFunction<T extends FunctionOfAnyType>(_val: unknown): _val is T;
     static isInteger(_val: unknown): _val is number;
     static isInstanceOf<T>(_val: unknown, _constructor: AbstractClass<T>): _val is T;
     static isNaN(_val: unknown): boolean;

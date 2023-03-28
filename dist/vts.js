@@ -32,11 +32,11 @@ export class Vts {
     static discriminator(_schema) {
         return new DiscriminatorSchema(_schema);
     }
-    static equal(_value) {
-        return new EqualSchema(_value);
-    }
     static enum(_value) {
         return Vts.or([...Object.values(_value).map((_val) => Vts.equal(_val))]);
+    }
+    static equal(_value) {
+        return new EqualSchema(_value);
     }
     static error() {
         return new ErrorSchema();

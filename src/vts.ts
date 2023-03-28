@@ -19,8 +19,8 @@ import {UndefinedSchema} from './schemas/undefinedSchema.js';
 import {UnknownSchema} from './schemas/unknownSchema.js';
 
 export type AbstractClass<T> = (abstract new (...args: any[]) => T);
+export type FunctionOfAnyType = (..._args: any[]) => any;
 export type RecordOf<Type> = Record<string, Type | undefined>;
-export type ExtractSchemaResultType<Type> = Type extends Schema<infer X> ? X : never;
 
 export class Vts {
 
@@ -44,12 +44,12 @@ export class Vts {
     return new DiscriminatorSchema(_schema);
   }
 
-  public static equal<S>(_value: S): EqualSchema<S> {
-    return new EqualSchema(_value);
-  }
-
   public static enum<T>(_value: Record<any, T>): OrSchema<EqualSchema<T>> {
     return Vts.or([...Object.values(_value).map((_val) => Vts.equal(_val))]);
+  }
+
+  public static equal<S>(_value: S): EqualSchema<S> {
+    return new EqualSchema(_value);
   }
 
   public static error(): ErrorSchema {
@@ -130,7 +130,7 @@ export class Vts {
     return this.isInstanceOf(_val, Error);
   }
 
-  public static isFunction<T extends (..._args: any[]) => any>(_val: unknown): _val is T {
+  public static isFunction<T extends FunctionOfAnyType>(_val: unknown): _val is T {
     return typeof _val === 'function';
   }
 

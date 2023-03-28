@@ -1,5 +1,5 @@
-import { Vts } from '../vts.js';
 import { Schema } from '../schema.js';
+import { Vts } from '../vts.js';
 export class NullSchema extends Schema {
     validate(_data, _errors) {
         if (!Vts.isNull(_data)) {

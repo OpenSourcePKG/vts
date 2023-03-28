@@ -1,5 +1,6 @@
 import {RecordOf} from './vts.js';
 
+export type ExtractSchemaResultType<Type> = Type extends Schema<infer X> ? X : never;
 export type SchemaErrors = (string | Record<string, SchemaErrors>)[];
 export type SchemaOptions = RecordOf<unknown>;
 

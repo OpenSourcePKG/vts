@@ -1,5 +1,5 @@
-import { Schema, SchemaErrors, SchemaOptions } from '../schema.js';
-import { ExtractSchemaResultType, RecordOf } from '../vts.js';
+import { ExtractSchemaResultType, Schema, SchemaErrors, SchemaOptions } from '../schema.js';
+import { RecordOf } from '../vts.js';
 import { OptionalSchema } from './objectSchema/optionalSchema.js';
 export interface ObjectSchemaItems {
     [key: string]: Schema<unknown>;
