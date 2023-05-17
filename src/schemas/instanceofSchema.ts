@@ -1,9 +1,9 @@
 import {Schema, SchemaErrors} from '../schema.js';
 import {AbstractClass, Vts} from '../vts.js';
 
-export class InstanceofSchema<S, T extends AbstractClass<S>> extends Schema<S> {
+export class InstanceofSchema<S> extends Schema<S> {
 
-  public constructor(private readonly _constructor: T) {
+  public constructor(private readonly _constructor: AbstractClass<S>) {
     super();
   }
 

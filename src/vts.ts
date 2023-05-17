@@ -60,7 +60,7 @@ export class Vts {
     return new EqualSchema(false);
   }
 
-  public static instanceof<S, T extends AbstractClass<S>>(_constructor: T): InstanceofSchema<S, T> {
+  public static instanceof<S>(_constructor: AbstractClass<S>): InstanceofSchema<S> {
     return new InstanceofSchema(_constructor);
   }
 
