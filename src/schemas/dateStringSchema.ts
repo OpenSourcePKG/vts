@@ -8,7 +8,7 @@ export interface DateStringSchemaValidateOptions {
   test: DateStringTestCallback;
 }
 
-export const DateStringSchemaTestDefault: DateStringTestCallback = (_data) => !Vts.isNaN(Date.parse(_data));
+export const DateStringSchemaTestDefault: DateStringTestCallback = (_data) => Vts.isFinite(Date.parse(_data));
 
 export class DateStringSchema extends StringSchema {
 

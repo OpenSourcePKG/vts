@@ -1,6 +1,6 @@
 import { Vts } from '../vts.js';
 import { StringSchema } from './stringSchema.js';
-export const DateStringSchemaTestDefault = (_data) => !Vts.isNaN(Date.parse(_data));
+export const DateStringSchemaTestDefault = (_data) => Vts.isFinite(Date.parse(_data));
 export class DateStringSchema extends StringSchema {
     constructor(_options = {
         test: DateStringSchemaTestDefault

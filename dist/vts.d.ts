@@ -21,7 +21,7 @@ export type AbstractClass<T> = (abstract new (...args: any[]) => T);
 export type FunctionOfAnyType = (..._args: any[]) => any;
 export type RecordOf<Type> = Record<string, Type | undefined>;
 export declare class Vts {
-    static array<S extends Schema<unknown>>(_type: S): ArraySchema<S>;
+    static array<S extends Schema<unknown>>(_elementsSchema: S): ArraySchema<S>;
     static boolean(): BooleanSchema;
     static date(): DateSchema;
     static dateString(_options?: DateStringSchemaValidateOptions): DateStringSchema;
@@ -30,10 +30,10 @@ export declare class Vts {
     static equal<S>(_value: S): EqualSchema<S>;
     static error(): ErrorSchema;
     static false(): EqualSchema<false>;
-    static instanceof<S, T extends AbstractClass<S>>(_constructor: T): InstanceofSchema<S, T>;
+    static instanceof<S>(_constructor: AbstractClass<S>): InstanceofSchema<S>;
     static null(): NullSchema;
     static number(): NumberSchema;
-    static object<Items extends ObjectSchemaItems>(_keys: Items, _options?: ObjectSchemaOptions): ObjectSchema<Items>;
+    static object<Items extends ObjectSchemaItems>(_items: Items, _options?: ObjectSchemaOptions): ObjectSchema<Items>;
     static object2<KeySchema extends StringSchema, ValuesSchema extends Schema<unknown>>(_keySchema: KeySchema, _valuesSchema: ValuesSchema): Object2Schema<KeySchema, ValuesSchema>;
     static optional<S extends Schema<unknown>>(_schema: S): OptionalSchema<S>;
     static or<S extends Schema<unknown>>(_schemas: S[]): OrSchema<S>;
@@ -46,10 +46,10 @@ export declare class Vts {
     static isBoolean(_val: unknown): _val is boolean;
     static isDate(_val: unknown): _val is Date;
     static isError(_val: unknown): _val is Error;
+    static isFinite(_val: unknown): boolean;
     static isFunction<T extends FunctionOfAnyType>(_val: unknown): _val is T;
     static isInteger(_val: unknown): _val is number;
-    static isInstanceOf<T>(_val: unknown, _constructor: AbstractClass<T>): _val is T;
-    static isNaN(_val: unknown): boolean;
+    static isInstanceOf<T>(_val: unknown, _class: AbstractClass<T>): _val is T;
     static isNull(_val: unknown): _val is null;
     static isNumber(_val: unknown): _val is number;
     static isObject(_val: unknown, _strict?: boolean): _val is RecordOf<unknown>;

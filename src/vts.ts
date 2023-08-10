@@ -24,8 +24,8 @@ export type RecordOf<Type> = Record<string, Type | undefined>;
 
 export class Vts {
 
-  public static array<S extends Schema<unknown>>(_type: S): ArraySchema<S> {
-    return new ArraySchema(_type);
+  public static array<S extends Schema<unknown>>(_elementsSchema: S): ArraySchema<S> {
+    return new ArraySchema(_elementsSchema);
   }
 
   public static boolean(): BooleanSchema {
@@ -73,10 +73,10 @@ export class Vts {
   }
 
   public static object<Items extends ObjectSchemaItems>(
-    _keys: Items,
+    _items: Items,
     _options?: ObjectSchemaOptions
   ): ObjectSchema<Items> {
-    return new ObjectSchema(_keys, _options);
+    return new ObjectSchema(_items, _options);
   }
 
   public static object2<KeySchema extends StringSchema, ValuesSchema extends Schema<unknown>>(
@@ -130,6 +130,10 @@ export class Vts {
     return this.isInstanceOf(_val, Error);
   }
 
+  public static isFinite(_val: unknown): boolean {
+    return Number.isFinite(_val);
+  }
+
   public static isFunction<T extends FunctionOfAnyType>(_val: unknown): _val is T {
     return typeof _val === 'function';
   }
@@ -140,13 +144,9 @@ export class Vts {
 
   public static isInstanceOf<T>(
     _val: unknown,
-    _constructor: AbstractClass<T>
+    _class: AbstractClass<T>
   ): _val is T {
-    return _val instanceof _constructor;
-  }
-
-  public static isNaN(_val: unknown): boolean {
-    return Number.isNaN(_val);
+    return _val instanceof _class;
   }
 
   public static isNull(_val: unknown): _val is null {
@@ -154,7 +154,7 @@ export class Vts {
   }
 
   public static isNumber(_val: unknown): _val is number {
-    return typeof _val === 'number' && !this.isNaN(_val);
+    return typeof _val === 'number' && this.isFinite(_val);
   }
 
   public static isObject(

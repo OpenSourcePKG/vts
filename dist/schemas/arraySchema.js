@@ -1,9 +1,9 @@
 import { Schema } from '../schema.js';
 import { Vts } from '../vts.js';
 export class ArraySchema extends Schema {
-    constructor(_type) {
+    constructor(_elementsSchema) {
         super();
-        this._type = _type;
+        this._elementsSchema = _elementsSchema;
     }
     validate(_data, _errors, _options) {
         if (!Vts.isArray(_data)) {
@@ -14,9 +14,9 @@ export class ArraySchema extends Schema {
             return true;
         }
         const arrayErrors = {};
-        for (const [key, data] of Object.entries(_data)) {
+        for (const [key, element] of Object.entries(_data)) {
             const errors = [];
-            if (!this._type.validate(data, errors, _options)) {
+            if (!this._elementsSchema.validate(element, errors, _options)) {
                 arrayErrors[key] = errors;
             }
         }

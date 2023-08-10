@@ -17,8 +17,8 @@ import { StringSchema } from './schemas/stringSchema.js';
 import { UndefinedSchema } from './schemas/undefinedSchema.js';
 import { UnknownSchema } from './schemas/unknownSchema.js';
 export class Vts {
-    static array(_type) {
-        return new ArraySchema(_type);
+    static array(_elementsSchema) {
+        return new ArraySchema(_elementsSchema);
     }
     static boolean() {
         return new BooleanSchema();
@@ -53,8 +53,8 @@ export class Vts {
     static number() {
         return new NumberSchema();
     }
-    static object(_keys, _options) {
-        return new ObjectSchema(_keys, _options);
+    static object(_items, _options) {
+        return new ObjectSchema(_items, _options);
     }
     static object2(_keySchema, _valuesSchema) {
         return new Object2Schema(_keySchema, _valuesSchema);
@@ -92,23 +92,23 @@ export class Vts {
     static isError(_val) {
         return this.isInstanceOf(_val, Error);
     }
+    static isFinite(_val) {
+        return Number.isFinite(_val);
+    }
     static isFunction(_val) {
         return typeof _val === 'function';
     }
     static isInteger(_val) {
         return Number.isInteger(_val);
     }
-    static isInstanceOf(_val, _constructor) {
-        return _val instanceof _constructor;
-    }
-    static isNaN(_val) {
-        return Number.isNaN(_val);
+    static isInstanceOf(_val, _class) {
+        return _val instanceof _class;
     }
     static isNull(_val) {
         return _val === null;
     }
     static isNumber(_val) {
-        return typeof _val === 'number' && !this.isNaN(_val);
+        return typeof _val === 'number' && this.isFinite(_val);
     }
     static isObject(_val, _strict = true) {
         return typeof _val === 'object' && !this.isNull(_val) && (_strict ? !this.isArray(_val) && !this.isDate(_val) &&
