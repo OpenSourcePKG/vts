@@ -10,6 +10,7 @@ complex schemas. The main strategy when validating those complex schemas is to b
 
 ### Prerequisites
 
+- NodeJS 18
 - Vts is an ES module: You will need to upgrade your project configuration accordingly.
 - Typescript: Of course, you need typescript installed e.g. via `npm i --save-dev typescript`
 - TypeScript "strict" setting: Idependently from Vts you should always use the typescript setting "strict: true" or else
