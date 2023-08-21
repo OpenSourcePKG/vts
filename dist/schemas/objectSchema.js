@@ -18,7 +18,10 @@ export class ObjectSchema extends Schema {
         });
     }
     validate(_data, _errors, _options) {
-        if (!Vts.isObject(_data, _options?.objectSchema?.strict ?? true)) {
+        const strict = _options?.objectSchema?.strict ?? this._options?.objectSchema?.strict ?? true;
+        const ignoreAdditionalItems = _options?.objectSchema?.ignoreAdditionalItems ??
+            this._options?.objectSchema?.ignoreAdditionalItems ?? false;
+        if (!Vts.isObject(_data, strict)) {
             this.addError(_errors, 'not an object');
             return false;
         }
@@ -38,7 +41,7 @@ export class ObjectSchema extends Schema {
                 this.addErrors(objectErrors, schemaKey, valueErrors);
             }
         }
-        if (!(this._options?.objectSchema?.ignoreAdditionalItems || _options?.objectSchema?.ignoreAdditionalItems)) {
+        if (!ignoreAdditionalItems) {
             for (const dataKey of Object.keys(_data)) {
                 if (!(dataKey in this._schemaItems)) {
                     this.addErrors(objectErrors, dataKey, ['unexpected additional key']);

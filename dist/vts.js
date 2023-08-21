@@ -120,6 +120,18 @@ export class Vts {
     static isString(_val) {
         return typeof _val === 'string';
     }
+    static isSystemError(_val) {
+        return _val instanceof Error && Vts.object({
+            code: Vts.optional(Vts.string()),
+            errno: Vts.optional(Vts.number()),
+            path: Vts.optional(Vts.string()),
+            syscall: Vts.optional(Vts.string())
+        }).validate(_val, [], {
+            objectSchema: {
+                strict: false
+            }
+        });
+    }
     static isUndefined(_val) {
         return typeof _val === 'undefined';
     }

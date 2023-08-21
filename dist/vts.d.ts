@@ -20,6 +20,12 @@ import { UnknownSchema } from './schemas/unknownSchema.js';
 export type AbstractClass<T> = (abstract new (...args: any[]) => T);
 export type FunctionOfAnyType = (..._args: any[]) => any;
 export type RecordOf<Type> = Record<string, Type | undefined>;
+interface ErrnoException extends Error {
+    errno?: number | undefined;
+    code?: string | undefined;
+    path?: string | undefined;
+    syscall?: string | undefined;
+}
 export declare class Vts {
     static array<S extends Schema<unknown>>(_elementsSchema: S): ArraySchema<S>;
     static boolean(): BooleanSchema;
@@ -55,5 +61,7 @@ export declare class Vts {
     static isObject(_val: unknown, _strict?: boolean): _val is RecordOf<unknown>;
     static isRegExp(_val: unknown): _val is RegExp;
     static isString(_val: unknown): _val is string;
+    static isSystemError(_val: unknown): _val is ErrnoException;
     static isUndefined(_val: unknown): _val is undefined;
 }
+export {};
