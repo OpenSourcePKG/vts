@@ -205,6 +205,7 @@ const tests: {
     [DataType.objectSimpleNonStrict]: true
   },
   [SchemaType.objectSimpleNonStrict]: {
+    [DataType.error]: true,
     [DataType.objectSimple]: true,
     [DataType.objectSimpleNonStrict]: true
   },
