@@ -22,6 +22,13 @@ export type AbstractClass<T> = (abstract new (...args: any[]) => T);
 export type FunctionOfAnyType = (..._args: any[]) => any;
 export type RecordOf<Type> = Record<string, Type | undefined>;
 
+interface ErrnoException extends Error {
+  errno?: number | undefined;
+  code?: string | undefined;
+  path?: string | undefined;
+  syscall?: string | undefined;
+}
+
 export class Vts {
 
   public static array<S extends Schema<unknown>>(_elementsSchema: S): ArraySchema<S> {
@@ -171,6 +178,19 @@ export class Vts {
 
   public static isString(_val: unknown): _val is string {
     return typeof _val === 'string';
+  }
+
+  public static isSystemError(_val: unknown): _val is ErrnoException {
+    return _val instanceof Error && Vts.object({
+      code: Vts.optional(Vts.string()),
+      errno: Vts.optional(Vts.number()),
+      path: Vts.optional(Vts.string()),
+      syscall: Vts.optional(Vts.string())
+    }).validate(_val, [], {
+      objectSchema: {
+        strict: false
+      }
+    });
   }
 
   public static isUndefined(_val: unknown): _val is undefined {
