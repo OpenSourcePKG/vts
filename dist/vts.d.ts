@@ -61,7 +61,7 @@ export declare class Vts {
     static isObject(_val: unknown, _strict?: boolean): _val is RecordOf<unknown>;
     static isRegExp(_val: unknown): _val is RegExp;
     static isString(_val: unknown): _val is string;
-    static isSystemError(_val: unknown): _val is ErrnoException;
+    static isSystemError(_val: unknown, _code?: string): _val is ErrnoException;
     static isUndefined(_val: unknown): _val is undefined;
 }
 export {};

@@ -120,9 +120,9 @@ export class Vts {
     static isString(_val) {
         return typeof _val === 'string';
     }
-    static isSystemError(_val) {
+    static isSystemError(_val, _code) {
         return _val instanceof Error && Vts.object({
-            code: Vts.optional(Vts.string()),
+            code: Vts.isUndefined(_code) ? Vts.optional(Vts.string()) : Vts.equal(_code),
             errno: Vts.optional(Vts.number()),
             path: Vts.optional(Vts.string()),
             syscall: Vts.optional(Vts.string())
