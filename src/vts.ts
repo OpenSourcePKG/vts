@@ -180,9 +180,12 @@ export class Vts {
     return typeof _val === 'string';
   }
 
-  public static isSystemError(_val: unknown): _val is ErrnoException {
+  public static isSystemError(
+    _val: unknown,
+    _code?: string
+  ): _val is ErrnoException {
     return _val instanceof Error && Vts.object({
-      code: Vts.optional(Vts.string()),
+      code: Vts.isUndefined(_code) ? Vts.optional(Vts.string()) : Vts.equal(_code),
       errno: Vts.optional(Vts.number()),
       path: Vts.optional(Vts.string()),
       syscall: Vts.optional(Vts.string())

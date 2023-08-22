@@ -282,6 +282,20 @@ Vts.isString(_val: unknown): _val is string
 - returns:
   True if the given _val is a string, false otherwise.
 
+#### Vts.isSystemError
+
+```
+Vts.isSystemError(_val: unknown, _code?: string): _val is ErrnoException
+```
+
+- param `_val`
+  The data to be validated.
+- param `_code`
+  An optional code string (e.g. ENOENT or EISDIR) that `_val.code` is checked against. If omitted `_val.code` can be
+  any string.
+- returns:
+  True if the given _val is compatible with Node.js' ErrnoException, false otherwise.
+
 #### Vts.isUndefined
 
 ```
