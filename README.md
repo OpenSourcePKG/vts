@@ -30,7 +30,7 @@ TypeScript from narrowing the type.
 
 To just validate a single value you can do the following:
 
-```
+```typescript
 import {Vts} from 'vts';
 
 const someData = undefined as unknown;
@@ -51,7 +51,7 @@ validators themselves.
 
 Schema Definition (definition.ts)
 
-```
+```typescript
 import {ExtractSchemaResultType, Vts} from 'vts';
 
 export const MyDataSchema = Vts.object({
@@ -70,7 +70,7 @@ export type MyData = ExtractSchemaResultType<typeof MyDataSchema>;
 
 Schema Usage 1 / straightforward inline usage (usage1.ts)
 
-```
+```typescript
 import {SchemaErrors} from 'vts';
 import {MyDataSchema} from './definition.js';
 
@@ -94,7 +94,7 @@ if (MyDataSchema.validate(someData, errors)) {
 
 Schema Usage 2 / Usage inside a function to showcase the usage of the automatically generated MyData type (usage2.ts)
 
-```
+```typescript
 import {MyData, MyDataSchema} from './definition.js';
 
 const someData = undefined as unknown;
@@ -538,7 +538,7 @@ This schema can be used to test if something is a valid date string. It tries to
 `Vts.dateString()`. If this validation should not be sufficient you can provide a separate test callback in the options
 like:
 
-```
+```typescript
 Vts.dateString({
   test: (_val) => Moment(_val, MyDateStringFormat, true).isValid()
 })
@@ -554,7 +554,7 @@ the same type as `SomeString`. If however `SomeString` is a literal type like `'
 more general type when evaluating the type of the data (`string` in this case). If you do not want this to happen you
 have to use a `const assertion`.
 
-```
+```typescript
 // type of EqualSchema1 is narrowed to 'EqualSchema<string>'
 const EqualSchema1 = Vts.equal('Test');
 
@@ -567,7 +567,7 @@ const EqualSchema2 = Vts.equal('Test' as const);
 If you have an object with keys and values (preferrably an `enum`) and you would like to create a schema that says "one
 of the values of the enum is valid" you could do something like this:
 
-```
+```typescript
 enum ReportType {
   REPORT1 = 'annualReport',
   REPORT2 = 'monthlyReport',
@@ -585,7 +585,7 @@ const ReportSchema = Vts.object({
 
 A shorter form of this is possible with `Vts.enum()`
 
-```
+```typescript
 enum ReportType {
   REPORT1 = 'annualReport',
   REPORT2 = 'monthlyReport',
@@ -605,7 +605,7 @@ data for each individual value of the `enum` you will have to use the long form 
 
 To understand what `Vts.discriminator()` does lets assume the following complex schema:
 
-```
+```typescript
 enum ReportType {
   REPORT1 = 'annualReport',
   REPORT2 = 'monthlyReport',
@@ -661,7 +661,7 @@ Because we tell Vts that the `type` key of the first schema is `ReportType.REPOR
 type of `Data` after the validation.  
 However, if we run this script, some errors are thrown:
 
-```
+```json
 [
   "no match with any of the given schemas",
   {
@@ -714,7 +714,7 @@ errors that are reported, all the calls to `Vts.equal(ReportType.REPORTX as cons
 `Vts.discriminator()`. They should then look like `Vts.discriminator(Vts.equal(ReportType.REPORTX as const))`.
 The error output then omits all errors for schemas that did not match the discriminator:
 
-```
+```json
 [
   "no match with any of the given schemas",
   {
