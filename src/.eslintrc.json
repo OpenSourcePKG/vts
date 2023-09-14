@@ -18,6 +18,7 @@
     "prefer-arrow"
   ],
   "rules": {
+    // typescript rules
     "@typescript-eslint/adjacent-overload-signatures": "error",
     "@typescript-eslint/array-type": "error",
     "@typescript-eslint/ban-types": "error",
@@ -51,6 +52,12 @@
     "@typescript-eslint/no-misused-new": "error",
     "@typescript-eslint/no-namespace": "error",
     "@typescript-eslint/no-parameter-properties": "off",
+    "@typescript-eslint/no-redeclare": [
+      "error",
+      {
+        "ignoreDeclarationMerge": true
+      }
+    ],
     "@typescript-eslint/no-shadow": "error",
     "@typescript-eslint/no-unused-vars": [
       "error",
@@ -72,7 +79,9 @@
     ],
     "@typescript-eslint/type-annotation-spacing": "error",
     "@typescript-eslint/unified-signatures": "error",
+    // eslint plugin rules
     "prefer-arrow/prefer-arrow-functions": "error",
+    // eslint rules
     "arrow-body-style": "off",
     "array-bracket-newline": [
       "error",
@@ -120,6 +129,7 @@
     "newline-per-chained-call": "off",
     "no-alert": "off",
     "no-console": "off",
+    "no-continue": "off",
     "no-dupe-class-members": "off",
     "no-empty-function": "off",
     "no-extra-parens": "off",
