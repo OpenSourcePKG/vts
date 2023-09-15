@@ -2,6 +2,7 @@ import { Vts } from '../vts.js';
 import { StringSchema } from './stringSchema.js';
 export const DateStringSchemaTestDefault = (_data) => Vts.isFinite(Date.parse(_data));
 export class DateStringSchema extends StringSchema {
+    _options;
     constructor(_options = {
         test: DateStringSchemaTestDefault
     }) {

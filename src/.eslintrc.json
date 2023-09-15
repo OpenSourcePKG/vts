@@ -106,6 +106,13 @@
       "error",
       "consistent"
     ],
+    "generator-star-spacing": [
+      "error",
+      {
+        "before": false,
+        "after": true
+      }
+    ],
     "global-require": "off",
     "id-length": "off",
     "indent": [

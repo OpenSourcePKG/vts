@@ -1,5 +1,6 @@
 import { Schema } from '../schema.js';
 export class EqualSchema extends Schema {
+    _value;
     constructor(_value) {
         super();
         this._value = _value;

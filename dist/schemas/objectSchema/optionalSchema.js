@@ -1,6 +1,7 @@
 import { Schema } from '../../schema.js';
 import { Vts } from '../../vts.js';
 export class OptionalSchema extends Schema {
+    _schema;
     constructor(_schema) {
         super();
         this._schema = _schema;

@@ -3,7 +3,7 @@ export class Schema {
         _errors.push(_error);
     }
     addErrors(_errorsObject, _key, _errors) {
-        _errorsObject[_key] || (_errorsObject[_key] = []);
+        _errorsObject[_key] ||= [];
         _errorsObject[_key].push(..._errors);
     }
 }

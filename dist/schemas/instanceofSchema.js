@@ -1,6 +1,7 @@
 import { Schema } from '../schema.js';
 import { Vts } from '../vts.js';
 export class InstanceofSchema extends Schema {
+    _constructor;
     constructor(_constructor) {
         super();
         this._constructor = _constructor;
