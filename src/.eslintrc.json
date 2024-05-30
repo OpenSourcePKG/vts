@@ -15,6 +15,7 @@
   },
   "plugins": [
     "@typescript-eslint",
+    "import",
     "prefer-arrow"
   ],
   "rules": {
@@ -81,6 +82,10 @@
     "@typescript-eslint/unified-signatures": "error",
     // eslint plugin rules
     "prefer-arrow/prefer-arrow-functions": "error",
+    "import/extensions": [
+      "error",
+      "always"
+    ],
     // eslint rules
     "arrow-body-style": "off",
     "array-bracket-newline": [
