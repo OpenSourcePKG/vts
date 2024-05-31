@@ -11,7 +11,7 @@
     "eslint": "^8.57.0",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-prefer-arrow": "^1.2.3",
-    "ts-node": "^10.9.2",
+    "tsx": "^4.11.0",
     "typescript": "^5.4.5"
   },
   "homepage": "https://github.com/OpenSourcePKG/vts#readme",
@@ -20,7 +20,7 @@
   "scripts": {
     "compile": "tsc --project src/tsconfig.json",
     "npm-check-updates": "npm-check-updates",
-    "tests": "ts-node --esm tests/index.ts"
+    "tests": "tsx tests/index.ts"
   },
   "name": "vts",
   "repository": {
