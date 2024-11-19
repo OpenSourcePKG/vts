@@ -5,27 +5,28 @@
   },
   "description": " A data validator fully written in Typescript.",
   "devDependencies": {
-    "@types/node": "^20.12.12",
-    "@typescript-eslint/eslint-plugin": "^7.11.0",
-    "@typescript-eslint/parser": "^7.11.0",
-    "eslint": "^8.57.0",
-    "eslint-plugin-import": "^2.29.1",
+    "@stylistic/eslint-plugin-ts": "^2.11.0",
+    "@types/node": "^20.17.6",
+    "@typescript-eslint/eslint-plugin": "^8.15.0",
+    "@typescript-eslint/parser": "^8.15.0",
+    "eslint": "^9.15.0",
+    "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-prefer-arrow": "^1.2.3",
-    "tsx": "^4.11.0",
-    "typescript": "^5.4.5"
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3"
   },
   "homepage": "https://github.com/OpenSourcePKG/vts#readme",
   "license": "MIT",
   "main": "dist/index.js",
-  "scripts": {
-    "compile": "tsc --project src/tsconfig.json",
-    "npm-check-updates": "npm-check-updates",
-    "tests": "tsx tests/index.ts"
-  },
   "name": "vts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/OpenSourcePKG/vts.git"
+  },
+  "scripts": {
+    "compile": "tsc --project src/tsconfig.json",
+    "npm-check-updates": "npm-check-updates",
+    "tests": "tsx tests/index.ts"
   },
   "type": "module",
   "types": "dist/index.d.ts",
