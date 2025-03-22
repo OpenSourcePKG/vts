@@ -5,15 +5,15 @@
   },
   "description": " A data validator fully written in Typescript.",
   "devDependencies": {
-    "@stylistic/eslint-plugin-ts": "^3.0.1",
-    "@types/node": "^20.17.16",
-    "@typescript-eslint/eslint-plugin": "^8.22.0",
-    "@typescript-eslint/parser": "^8.22.0",
-    "eslint": "^9.19.0",
+    "@stylistic/eslint-plugin-ts": "^4.2.0",
+    "@types/node": "^22.13.11",
+    "@typescript-eslint/eslint-plugin": "^8.27.0",
+    "@typescript-eslint/parser": "^8.27.0",
+    "eslint": "^9.23.0",
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-prefer-arrow": "^1.2.3",
-    "tsx": "^4.19.2",
-    "typescript": "^5.7.3"
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.2"
   },
   "homepage": "https://github.com/OpenSourcePKG/vts#readme",
   "license": "MIT",
