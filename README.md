@@ -315,41 +315,48 @@ inside the main Vts class (for ease of use). These methods are the ones that are
 #### Vts.array()
 
 ```
-Vts.array(_elementSchema: S): ArraySchema<S>
+Vts.array(_elementSchema: S, _options?: SchemaOptions): ArraySchema<S>
 ```
 
 - param `_elementSchema`
   A schema describing the elements of the array.
+- param `_options` (optional)
+  The [SchemaOptions](#SchemaOptions).
 - returns:
   An instance of `ArraySchema`.
 
 #### Vts.boolean()
 
 ```
-Vts.boolean(): BooleanSchema
+Vts.boolean(_options?: SchemaOptions): BooleanSchema
 ```
 
+- param `_options` (optional)
+  The [SchemaOptions](#SchemaOptions).
 - returns:
   An instance of `BooleanSchema`.
 
 #### Vts.date()
 
 ```
-Vts.date(): DateSchema
+Vts.date(_options?: SchemaOptions): DateSchema
 ```
 
+- param `_options` (optional)
+  The [SchemaOptions](#SchemaOptions).
 - returns:
   An instance of `DateSchema`.
 
 #### Vts.dateString()
 
 ```
-Vts.dateString(_options?: DateStringSchemaValidateOptions): DateStringSchema
+Vts.dateString(_options?: StringSchemaOptions): DateStringSchema
 ```
 
 - param `_options`
-  The options for the new `DateStringSchema`.
-  They include a test callback to check if the string is a valid date.
+  The [StringSchemaOptions](#StringSchemaOptions).
+  If the `test` callback is omitted, a callback is used that checks if the given value is a string that could be a valid
+  date.
 - returns:
   An instance of `DateStringSchema`.
 
@@ -367,69 +374,83 @@ Vts.discriminator(_schema: S): DiscriminatorSchema<S>
 #### Vts.enum()
 
 ```
-Vts.enum(_value: Record<any, T>): OrSchema<EqualSchema<T>>
+Vts.enum<T>(_value: T[] | Record<any, T>, _options?: SchemaOptions): OrSchema<EqualSchema<T>>
 ```
 
 - param `_value`
-  An object with keys and values.
+  An object with keys and values or an array.
+- param `_options` (optional)
+  The [SchemaOptions](#SchemaOptions).
 - returns:
   An instance of `OrSchema` with the subtype `EqualSchema` with the subtype `T`.
 
 #### Vts.equal()
 
 ```
-Vts.equal(_value: S): EqualSchema<S>
+Vts.equal(_value: S, _options?: SchemaOptions): EqualSchema<S>
 ```
 
 - param `_value`
   The subtype of the `EqualSchema` to be created.
+- param `_options` (optional)
+  The [SchemaOptions](#SchemaOptions).
 - returns:
   An instance of `EqualSchema` with the subtype `S`.
 
 #### Vts.error()
 
 ```
-Vts.error(): ErrorSchema
+Vts.error(_options?: SchemaOptions): ErrorSchema
 ```
 
+- param `_options` (optional)
+  The [SchemaOptions](#SchemaOptions).
 - returns:
   An instance of `ErrorSchema`.
 
 #### Vts.false()
 
 ```
-Vts.false(): EqualSchema<false>
+Vts.false(_options?: SchemaOptions): EqualSchema<false>
 ```
 
+- param `_options` (optional)
+  The [SchemaOptions](#SchemaOptions).
 - returns:
   An instance of `EqualSchema` with the subtype `false`.
 
 #### Vts.instanceof()
 
 ```
-Vts.instanceof(_constructor: AbstractClass<S>): InstanceofSchema<S>
+Vts.instanceof(_constructor: AbstractClass<S>, _options?: SchemaOptions): InstanceofSchema<S>
 ```
 
 - param `_constructor`
   Some class.
+- param `_options` (optional)
+  The [SchemaOptions](#SchemaOptions).
 - returns:
   An instance of `InstanceofSchema`.
 
 #### Vts.null()
 
 ```
-Vts.null(): NullSchema
+Vts.null(_options?: SchemaOptions): NullSchema
 ```
 
+- param `_options` (optional)
+  The [SchemaOptions](#SchemaOptions).
 - returns:
   An instance of `NullSchema`.
 
 #### Vts.number()
 
 ```
-Vts.number(): NumberSchema
+Vts.number(_options?: SchemaOptions): NumberSchema
 ```
 
+- param `_options` (optional)
+  The [SchemaOptions](#SchemaOptions).
 - returns:
   An instance of `NumberSchema`.
 
@@ -444,20 +465,22 @@ Vts.object(_items: Items, _options?: ObjectSchemaOptions): ObjectSchema<Items>
   The keys of the schema are the keys of the data object to be validated.
   The values are schemas that describe the corresponding key.
 - param `_options` (optional)
-  An object with options for the object schema.
+  The [ObjectSchemaOptions](#ObjectSchemaOptions).
 - returns:
   An instance of `ObjectSchema`.
 
 #### Vts.object2()
 
 ```
-Vts.object2(_keySchema: KeySchema, _valuesSchema: ValuesSchema): Object2Schema<KeySchema, ValuesSchema>
+Vts.object2(_keySchema: KeySchema, _valuesSchema: ValuesSchema, _options?: SchemaOptions): Object2Schema<KeySchema, ValuesSchema>
 ```
 
 - param `_keySchema`
   A schema describing the keys of the data to be validated.
 - param `_valuesSchema`
   A schema describing the values of the data to be validated.
+- param `_options` (optional)
+  The [SchemaOptions](#SchemaOptions).
 - returns:
   An instance of `Object2Schema`.
 
@@ -475,29 +498,35 @@ Vts.optional(_schema: S): OptionalSchema<S>
 #### Vts.or()
 
 ```
-Vts.or(_schemas: S[]): OrSchema<S>
+Vts.or(_schemas: S[], _options?: SchemaOptions): OrSchema<S>
 ```
 
 - param `__schemas`
   An array of schemas used as sub schemas of the `OrSchema` to be created.
+- param `_options` (optional)
+  The [SchemaOptions](#SchemaOptions).
 - returns:
   An instance of `OrSchema`.
 
 #### Vts.regexp()
 
 ```
-Vts.regexp(): RegExpSchema
+Vts.regexp(_options?: SchemaOptions): RegExpSchema
 ```
 
+- param `_options` (optional)
+  The [SchemaOptions](#SchemaOptions).
 - returns:
   An instance of `RegExpSchema`.
 
 #### Vts.string()
 
 ```
-Vts.string(): StringSchema
+Vts.string(_options?: StringSchemaOptions): StringSchema
 ```
 
+- param `_options` (optional)
+  The [StringSchemaOptions](#StringSchemaOptions).
 - returns:
   An instance of `StringSchema`.
 
@@ -527,6 +556,28 @@ Vts.undefined(): UndefinedSchema
 
 - returns:
   An instance of `UndefinedSchema`.
+
+### Types
+
+#### SchemaOptions
+
+This interface encapsulates the basic options of all schemas like the description that is used when the schema is
+described via `someSchema.describe()`
+
+#### StringSchemaOptions
+
+Extends [SchemaOptions](#SchemaOptions) by an optional test callback is used during validation. If the test
+fails an error will be returned.
+
+#### ObjectSchemaOptions
+
+Extends [SchemaOptions](#SchemaOptions) by:
+
+- `ignoreAdditionalItems` (optional / default: false): Usually during validation any additional keys that are present in
+  the data object that are not defined in the schema throw an error. If `ignoreAdditionalItems` is true, any additional
+  items that exist in the data object are ignored during validation.
+- `strict` (optional / default: false): If this is true, additional checks are made to ensure, that the data is an
+  object and not an object-like see Vts.isObject.
 
 ### Notes
 
