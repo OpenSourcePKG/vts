@@ -56,7 +56,7 @@ export class Vts {
   }
 
   public static enum<T>(
-    _value: Record<any, T>,
+    _value: T[] | Record<any, T>,
     _options?: SchemaOptions
   ): OrSchema<EqualSchema<T>> {
     return Vts.or([...Object.values(_value).map((_val) => Vts.equal(_val))], _options);

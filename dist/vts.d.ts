@@ -31,7 +31,7 @@ export declare class Vts {
     static date(_options?: SchemaOptions): DateSchema;
     static dateString(_options?: StringSchemaOptions): StringSchema;
     static discriminator<S extends Schema<unknown>>(_schema: S): DiscriminatorSchema<S>;
-    static enum<T>(_value: Record<any, T>, _options?: SchemaOptions): OrSchema<EqualSchema<T>>;
+    static enum<T>(_value: T[] | Record<any, T>, _options?: SchemaOptions): OrSchema<EqualSchema<T>>;
     static equal<S>(_value: S, _options?: SchemaOptions): EqualSchema<S>;
     static error(_options?: SchemaOptions): ErrorSchema;
     static false(_options?: SchemaOptions): EqualSchema<false>;
