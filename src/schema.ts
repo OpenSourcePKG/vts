@@ -1,16 +1,29 @@
-import {RecordOf} from './vts.js';
-
 export type ExtractSchemaResultType<Type> = Type extends Schema<infer X> ? X : never;
 export type SchemaErrors = (string | Record<string, SchemaErrors>)[];
-export type SchemaOptions = RecordOf<unknown>;
+export type SchemaOptions = {
+  description?: string;
+};
 
-export abstract class Schema<Type> {
+export interface SchemaDescription {
+  description?: string;
+}
+
+export abstract class Schema<Type, Options extends SchemaOptions = SchemaOptions> {
+
+  public constructor(protected readonly _options?: Options) {
+  }
 
   public abstract validate(
     _data: unknown,
     _errors: SchemaErrors,
-    _options?: SchemaOptions
+    _options?: Options
   ): _data is Type;
+
+  public describe(): SchemaDescription {
+    return {
+      description: this._options?.description
+    };
+  }
 
   protected addError(
     _errors: SchemaErrors,

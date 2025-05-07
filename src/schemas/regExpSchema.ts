@@ -1,7 +1,18 @@
-import {Schema, SchemaErrors} from '../schema.js';
+import {Schema, SchemaDescription, SchemaErrors} from '../schema.js';
 import {Vts} from '../vts.js';
 
+export interface RegExpSchemaDescription extends SchemaDescription {
+  type: 'regExp';
+}
+
 export class RegExpSchema extends Schema<RegExp> {
+
+  public override describe(): RegExpSchemaDescription {
+    return {
+      ...super.describe(),
+      type: 'regExp'
+    };
+  }
 
   public validate(
     _data: unknown,

@@ -1,10 +1,26 @@
-import {ExtractSchemaResultType, Schema, SchemaErrors, SchemaOptions} from '../schema.js';
+import {ExtractSchemaResultType, Schema, SchemaDescription, SchemaErrors, SchemaOptions} from '../schema.js';
 import {Vts} from '../vts.js';
+
+export interface ArraySchemaDescription extends SchemaDescription {
+  items: SchemaDescription;
+  type: 'array';
+}
 
 export class ArraySchema<S extends Schema<unknown>> extends Schema<ExtractSchemaResultType<S>[]> {
 
-  public constructor(private readonly _elementsSchema: S) {
-    super();
+  public constructor(
+    private readonly _elementsSchema: S,
+    _options?: SchemaOptions
+  ) {
+    super(_options);
+  }
+
+  public override describe(): ArraySchemaDescription {
+    return {
+      ...super.describe(),
+      items: this._elementsSchema.describe(),
+      type: 'array'
+    };
   }
 
   public validate(

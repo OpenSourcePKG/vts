@@ -1,4 +1,4 @@
-import {ExtractSchemaResultType, Schema, SchemaErrors, SchemaOptions} from '../schema.js';
+import {ExtractSchemaResultType, Schema, SchemaDescription, SchemaErrors, SchemaOptions} from '../schema.js';
 import {RecordOf, Vts} from '../vts.js';
 import {DiscriminatorSchema} from './objectSchema/discriminatorSchema.js';
 import {OptionalSchema} from './objectSchema/optionalSchema.js';
@@ -32,13 +32,18 @@ export interface ObjectSchemaOptions extends SchemaOptions {
   };
 }
 
-export class ObjectSchema<Items extends ObjectSchemaItems> extends Schema<unknown> {
+export interface ObjectSchemaDescription extends SchemaDescription {
+  items: Record<string, SchemaDescription>;
+  type: 'object';
+}
+
+export class ObjectSchema<Items extends ObjectSchemaItems> extends Schema<unknown, ObjectSchemaOptions> {
 
   public constructor(
     public readonly _schemaItems: Items,
-    private readonly _options?: ObjectSchemaOptions
+    _options?: ObjectSchemaOptions
   ) {
-    super();
+    super(_options);
   }
 
   public extend<Items2 extends ObjectSchemaItems>(
@@ -52,6 +57,20 @@ export class ObjectSchema<Items extends ObjectSchemaItems> extends Schema<unknow
       ...this._options,
       ..._options
     });
+  }
+
+  public override describe(): SchemaDescription {
+    const objectSchemaDescription: ObjectSchemaDescription = {
+      ...super.describe(),
+      items: {},
+      type: 'object'
+    };
+
+    for (const [schemaKey, schema] of Object.entries(this._schemaItems)) {
+      objectSchemaDescription.items[schemaKey] = schema.describe();
+    }
+
+    return objectSchemaDescription;
   }
 
   public validate(

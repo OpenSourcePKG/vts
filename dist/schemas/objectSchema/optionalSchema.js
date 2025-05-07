@@ -6,6 +6,12 @@ export class OptionalSchema extends Schema {
         super();
         this._schema = _schema;
     }
+    describe() {
+        return {
+            ...this._schema.describe(),
+            optional: true
+        };
+    }
     validate(_data, _errors, _options) {
         return Vts.isUndefined(_data) || this._schema.validate(_data, _errors, _options);
     }

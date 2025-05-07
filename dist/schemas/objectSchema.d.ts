@@ -1,4 +1,4 @@
-import { ExtractSchemaResultType, Schema, SchemaErrors, SchemaOptions } from '../schema.js';
+import { ExtractSchemaResultType, Schema, SchemaDescription, SchemaErrors, SchemaOptions } from '../schema.js';
 import { RecordOf } from '../vts.js';
 import { OptionalSchema } from './objectSchema/optionalSchema.js';
 export interface ObjectSchemaItems {
@@ -24,11 +24,15 @@ export interface ObjectSchemaOptions extends SchemaOptions {
         strict?: boolean;
     };
 }
-export declare class ObjectSchema<Items extends ObjectSchemaItems> extends Schema<unknown> {
+export interface ObjectSchemaDescription extends SchemaDescription {
+    items: Record<string, SchemaDescription>;
+    type: 'object';
+}
+export declare class ObjectSchema<Items extends ObjectSchemaItems> extends Schema<unknown, ObjectSchemaOptions> {
     readonly _schemaItems: Items;
-    private readonly _options?;
-    constructor(_schemaItems: Items, _options?: ObjectSchemaOptions | undefined);
+    constructor(_schemaItems: Items, _options?: ObjectSchemaOptions);
     extend<Items2 extends ObjectSchemaItems>(_schemaItems: Items2, _options?: ObjectSchemaOptions): ObjectSchema<Items & Items2>;
+    describe(): SchemaDescription;
     validate(_data: unknown, _errors: SchemaErrors, _options?: ObjectSchemaOptions): _data is RequiredItems<Items> & OptionalItems<Items>;
 }
 export {};

@@ -1,7 +1,6 @@
 import { ArraySchema } from './schemas/arraySchema.js';
 import { BooleanSchema } from './schemas/booleanSchema.js';
 import { DateSchema } from './schemas/dateSchema.js';
-import { DateStringSchema } from './schemas/dateStringSchema.js';
 import { EqualSchema } from './schemas/equalSchema.js';
 import { ErrorSchema } from './schemas/errorSchema.js';
 import { InstanceofSchema } from './schemas/instanceofSchema.js';
@@ -17,68 +16,70 @@ import { StringSchema } from './schemas/stringSchema.js';
 import { UndefinedSchema } from './schemas/undefinedSchema.js';
 import { UnknownSchema } from './schemas/unknownSchema.js';
 export class Vts {
-    static array(_elementsSchema) {
-        return new ArraySchema(_elementsSchema);
+    static array(_elementsSchema, _options) {
+        return new ArraySchema(_elementsSchema, _options);
     }
-    static boolean() {
-        return new BooleanSchema();
+    static boolean(_options) {
+        return new BooleanSchema(_options);
     }
-    static date() {
-        return new DateSchema();
+    static date(_options) {
+        return new DateSchema(_options);
     }
-    static dateString(_options) {
-        return new DateStringSchema(_options);
+    static dateString(_options = {
+        test: (_data) => Vts.isFinite(Date.parse(_data))
+    }) {
+        return new StringSchema(_options);
     }
     static discriminator(_schema) {
         return new DiscriminatorSchema(_schema);
     }
-    static enum(_value) {
-        return Vts.or([...Object.values(_value).map((_val) => Vts.equal(_val))]);
+    static enum(_value, _options) {
+        return Vts.or([...Object.values(_value).map((_val) => Vts.equal(_val))], _options);
     }
-    static equal(_value) {
-        return new EqualSchema(_value);
+    static equal(_value, _options) {
+        return new EqualSchema(_value, _options);
     }
-    static error() {
-        return new ErrorSchema();
+    static error(_options) {
+        return new ErrorSchema(_options);
     }
-    static false() {
-        return new EqualSchema(false);
+    static false(_options) {
+        return new EqualSchema(false, _options);
     }
-    static instanceof(_constructor) {
-        return new InstanceofSchema(_constructor);
+    static instanceof(_constructor, _options) {
+        return new InstanceofSchema(_constructor, _options);
     }
-    static null() {
-        return new NullSchema();
+    static null(_options) {
+        return new NullSchema(_options);
     }
-    static number() {
-        return new NumberSchema();
+    static number(_options) {
+        return new NumberSchema(_options);
     }
-    static object(_items, _options) {
+    static object(_items, _options = {}) {
         return new ObjectSchema(_items, _options);
     }
-    static object2(_keySchema, _valuesSchema) {
-        return new Object2Schema(_keySchema, _valuesSchema);
+    static object2(_keySchema, _valuesSchema, _options) {
+        return new Object2Schema(_keySchema, _valuesSchema, _options);
     }
     static optional(_schema) {
         return new OptionalSchema(_schema);
     }
-    static or(_schemas) {
-        return new OrSchema(_schemas);
+    static or(_schemas, _options) {
+        return new OrSchema(_schemas, _options);
     }
-    static regexp() {
-        return new RegExpSchema();
+    static regexp(_options) {
+        return new RegExpSchema(_options);
     }
-    static string() {
-        return new StringSchema();
+    static string(_options) {
+        return new StringSchema(_options);
     }
-    static true() {
-        return new EqualSchema(true);
+    static true(_options) {
+        return new EqualSchema(true, _options);
     }
-    static unknown() {
-        return new UnknownSchema();
+    static unknown(_options) {
+        return new UnknownSchema(_options);
     }
-    static undefined() {
-        return new UndefinedSchema();
+    static undefined(_options) {
+        return new UndefinedSchema(_options);
     }
     static isArray(_val) {
         return Array.isArray(_val);

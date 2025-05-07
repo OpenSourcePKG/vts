@@ -3,10 +3,18 @@ import { Vts } from '../vts.js';
 export class Object2Schema extends Schema {
     _keySchema;
     _valuesSchema;
-    constructor(_keySchema, _valuesSchema) {
-        super();
+    constructor(_keySchema, _valuesSchema, _options) {
+        super(_options);
         this._keySchema = _keySchema;
         this._valuesSchema = _valuesSchema;
+    }
+    describe() {
+        return {
+            ...super.describe(),
+            key: this._keySchema.describe(),
+            type: 'object2',
+            value: this._valuesSchema.describe()
+        };
     }
     validate(_data, _errors) {
         if (!Vts.isObject(_data)) {

@@ -4,11 +4,9 @@ import { DiscriminatorSchema } from './objectSchema/discriminatorSchema.js';
 import { OptionalSchema } from './objectSchema/optionalSchema.js';
 export class ObjectSchema extends Schema {
     _schemaItems;
-    _options;
     constructor(_schemaItems, _options) {
-        super();
+        super(_options);
         this._schemaItems = _schemaItems;
-        this._options = _options;
     }
     extend(_schemaItems, _options) {
         return new ObjectSchema({
@@ -18,6 +16,17 @@ export class ObjectSchema extends Schema {
             ...this._options,
             ..._options
         });
+    }
+    describe() {
+        const objectSchemaDescription = {
+            ...super.describe(),
+            items: {},
+            type: 'object'
+        };
+        for (const [schemaKey, schema] of Object.entries(this._schemaItems)) {
+            objectSchemaDescription.items[schemaKey] = schema.describe();
+        }
+        return objectSchemaDescription;
     }
     validate(_data, _errors, _options) {
         const strict = _options?.objectSchema?.strict ?? this._options?.objectSchema?.strict ?? true;

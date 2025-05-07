@@ -1,7 +1,18 @@
-import {Schema, SchemaErrors} from '../schema.js';
+import {Schema, SchemaDescription, SchemaErrors} from '../schema.js';
 import {Vts} from '../vts.js';
 
+export interface ErrorSchemaDescription extends SchemaDescription {
+  type: 'error';
+}
+
 export class ErrorSchema extends Schema<Error> {
+
+  public override describe(): ErrorSchemaDescription {
+    return {
+      ...super.describe(),
+      type: 'error'
+    };
+  }
 
   public validate(
     _data: unknown,

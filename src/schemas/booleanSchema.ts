@@ -1,7 +1,18 @@
-import {Schema, SchemaErrors} from '../schema.js';
+import {Schema, SchemaDescription, SchemaErrors} from '../schema.js';
 import {Vts} from '../vts.js';
 
+export interface BooleanSchemaDescription extends SchemaDescription {
+  type: 'boolean';
+}
+
 export class BooleanSchema extends Schema<boolean> {
+
+  public override describe(): BooleanSchemaDescription {
+    return {
+      ...super.describe(),
+      type: 'boolean'
+    };
+  }
 
   public validate(
     _data: unknown,

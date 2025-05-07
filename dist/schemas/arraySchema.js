@@ -2,9 +2,16 @@ import { Schema } from '../schema.js';
 import { Vts } from '../vts.js';
 export class ArraySchema extends Schema {
     _elementsSchema;
-    constructor(_elementsSchema) {
-        super();
+    constructor(_elementsSchema, _options) {
+        super(_options);
         this._elementsSchema = _elementsSchema;
+    }
+    describe() {
+        return {
+            ...super.describe(),
+            items: this._elementsSchema.describe(),
+            type: 'array'
+        };
     }
     validate(_data, _errors, _options) {
         if (!Vts.isArray(_data)) {

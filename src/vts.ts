@@ -1,8 +1,7 @@
-import {Schema} from './schema.js';
+import {Schema, SchemaOptions} from './schema.js';
 import {ArraySchema} from './schemas/arraySchema.js';
 import {BooleanSchema} from './schemas/booleanSchema.js';
 import {DateSchema} from './schemas/dateSchema.js';
-import {DateStringSchema, DateStringSchemaValidateOptions} from './schemas/dateStringSchema.js';
 import {EqualSchema} from './schemas/equalSchema.js';
 import {ErrorSchema} from './schemas/errorSchema.js';
 import {InstanceofSchema} from './schemas/instanceofSchema.js';
@@ -14,7 +13,7 @@ import {DiscriminatorSchema} from './schemas/objectSchema/discriminatorSchema.js
 import {OptionalSchema} from './schemas/objectSchema/optionalSchema.js';
 import {OrSchema} from './schemas/orSchema.js';
 import {RegExpSchema} from './schemas/regExpSchema.js';
-import {StringSchema} from './schemas/stringSchema.js';
+import {StringSchema, StringSchemaOptions} from './schemas/stringSchema.js';
 import {UndefinedSchema} from './schemas/undefinedSchema.js';
 import {UnknownSchema} from './schemas/unknownSchema.js';
 
@@ -31,94 +30,112 @@ interface ErrnoException extends Error {
 
 export class Vts {
 
-  public static array<S extends Schema<unknown>>(_elementsSchema: S): ArraySchema<S> {
-    return new ArraySchema(_elementsSchema);
+  public static array<S extends Schema<unknown>>(
+    _elementsSchema: S,
+    _options?: SchemaOptions
+  ): ArraySchema<S> {
+    return new ArraySchema(_elementsSchema, _options);
   }
 
-  public static boolean(): BooleanSchema {
-    return new BooleanSchema();
+  public static boolean(_options?: SchemaOptions): BooleanSchema {
+    return new BooleanSchema(_options);
   }
 
-  public static date(): DateSchema {
-    return new DateSchema();
+  public static date(_options?: SchemaOptions): DateSchema {
+    return new DateSchema(_options);
   }
 
-  public static dateString(_options?: DateStringSchemaValidateOptions): DateStringSchema {
-    return new DateStringSchema(_options);
+  public static dateString(_options: StringSchemaOptions = {
+    test: (_data) => Vts.isFinite(Date.parse(_data))
+  }): StringSchema {
+    return new StringSchema(_options);
   }
 
   public static discriminator<S extends Schema<unknown>>(_schema: S): DiscriminatorSchema<S> {
     return new DiscriminatorSchema(_schema);
   }
 
-  public static enum<T>(_value: Record<any, T>): OrSchema<EqualSchema<T>> {
-    return Vts.or([...Object.values(_value).map((_val) => Vts.equal(_val))]);
+  public static enum<T>(
+    _value: Record<any, T>,
+    _options?: SchemaOptions
+  ): OrSchema<EqualSchema<T>> {
+    return Vts.or([...Object.values(_value).map((_val) => Vts.equal(_val))], _options);
   }
 
-  public static equal<S>(_value: S): EqualSchema<S> {
-    return new EqualSchema(_value);
+  public static equal<S>(
+    _value: S,
+    _options?: SchemaOptions
+  ): EqualSchema<S> {
+    return new EqualSchema(_value, _options);
   }
 
-  public static error(): ErrorSchema {
-    return new ErrorSchema();
+  public static error(_options?: SchemaOptions): ErrorSchema {
+    return new ErrorSchema(_options);
   }
 
-  public static false(): EqualSchema<false> {
-    return new EqualSchema(false);
+  public static false(_options?: SchemaOptions): EqualSchema<false> {
+    return new EqualSchema(false, _options);
   }
 
-  public static instanceof<S>(_constructor: AbstractClass<S>): InstanceofSchema<S> {
-    return new InstanceofSchema(_constructor);
+  public static instanceof<S>(
+    _constructor: AbstractClass<S>,
+    _options?: SchemaOptions
+  ): InstanceofSchema<S> {
+    return new InstanceofSchema(_constructor, _options);
   }
 
-  public static null(): NullSchema {
-    return new NullSchema();
+  public static null(_options?: SchemaOptions): NullSchema {
+    return new NullSchema(_options);
   }
 
-  public static number(): NumberSchema {
-    return new NumberSchema();
+  public static number(_options?: SchemaOptions): NumberSchema {
+    return new NumberSchema(_options);
   }
 
   public static object<Items extends ObjectSchemaItems>(
     _items: Items,
-    _options?: ObjectSchemaOptions
+    _options: ObjectSchemaOptions = {}
   ): ObjectSchema<Items> {
     return new ObjectSchema(_items, _options);
   }
 
   public static object2<KeySchema extends StringSchema, ValuesSchema extends Schema<unknown>>(
     _keySchema: KeySchema,
-    _valuesSchema: ValuesSchema
+    _valuesSchema: ValuesSchema,
+    _options?: SchemaOptions
   ): Object2Schema<KeySchema, ValuesSchema> {
-    return new Object2Schema(_keySchema, _valuesSchema);
+    return new Object2Schema(_keySchema, _valuesSchema, _options);
   }
 
   public static optional<S extends Schema<unknown>>(_schema: S): OptionalSchema<S> {
     return new OptionalSchema(_schema);
   }
 
-  public static or<S extends Schema<unknown>>(_schemas: S[]): OrSchema<S> {
-    return new OrSchema(_schemas);
+  public static or<S extends Schema<unknown>>(
+    _schemas: S[],
+    _options?: SchemaOptions
+  ): OrSchema<S> {
+    return new OrSchema(_schemas, _options);
   }
 
-  public static regexp(): RegExpSchema {
-    return new RegExpSchema();
+  public static regexp(_options?: SchemaOptions): RegExpSchema {
+    return new RegExpSchema(_options);
   }
 
-  public static string(): StringSchema {
-    return new StringSchema();
+  public static string(_options?: StringSchemaOptions): StringSchema {
+    return new StringSchema(_options);
   }
 
-  public static true(): EqualSchema<true> {
-    return new EqualSchema(true);
+  public static true(_options?: SchemaOptions): EqualSchema<true> {
+    return new EqualSchema(true, _options);
   }
 
-  public static unknown(): UnknownSchema {
-    return new UnknownSchema();
+  public static unknown(_options?: SchemaOptions): UnknownSchema {
+    return new UnknownSchema(_options);
   }
 
-  public static undefined(): UndefinedSchema {
-    return new UndefinedSchema();
+  public static undefined(_options?: SchemaOptions): UndefinedSchema {
+    return new UndefinedSchema(_options);
   }
 
   public static isArray(_val: unknown): _val is unknown[] {

@@ -1,9 +1,33 @@
-import {ExtractSchemaResultType, Schema, SchemaErrors, SchemaOptions} from '../schema.js';
+import {ExtractSchemaResultType, Schema, SchemaDescription, SchemaErrors, SchemaOptions} from '../schema.js';
+
+export interface OrSchemaDescription extends SchemaDescription {
+  type: 'or';
+  values: SchemaDescription[];
+}
 
 export class OrSchema<S extends Schema<unknown>> extends Schema<ExtractSchemaResultType<S>> {
 
-  public constructor(private readonly _types: S[]) {
-    super();
+  public constructor(
+    private readonly _types: S[],
+    _options?: SchemaOptions
+  ) {
+    super(_options);
+  }
+
+  public override describe(): SchemaDescription {
+    const schemaDescription = super.describe();
+
+    const orSchemaDescription: OrSchemaDescription = {
+      ...schemaDescription,
+      type: 'or',
+      values: []
+    };
+
+    for (const schema of Object.values(this._types)) {
+      orSchemaDescription.values.push(schema.describe());
+    }
+
+    return orSchemaDescription;
   }
 
   public validate(

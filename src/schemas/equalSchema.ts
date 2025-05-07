@@ -1,9 +1,25 @@
-import {Schema, SchemaErrors} from '../schema.js';
+import {Schema, SchemaDescription, SchemaErrors, SchemaOptions} from '../schema.js';
+
+export interface EqualSchemaDescription extends SchemaDescription {
+  type: 'equal';
+  value: any;
+}
 
 export class EqualSchema<S> extends Schema<S> {
 
-  public constructor(private readonly _value: unknown) {
-    super();
+  public constructor(
+    private readonly _value: unknown,
+    _options?: SchemaOptions
+  ) {
+    super(_options);
+  }
+
+  public override describe(): EqualSchemaDescription {
+    return {
+      ...super.describe(),
+      type: 'equal',
+      value: this._value
+    };
   }
 
   public validate(

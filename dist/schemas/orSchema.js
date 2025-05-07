@@ -1,9 +1,21 @@
 import { Schema } from '../schema.js';
 export class OrSchema extends Schema {
     _types;
-    constructor(_types) {
-        super();
+    constructor(_types, _options) {
+        super(_options);
         this._types = _types;
+    }
+    describe() {
+        const schemaDescription = super.describe();
+        const orSchemaDescription = {
+            ...schemaDescription,
+            type: 'or',
+            values: []
+        };
+        for (const schema of Object.values(this._types)) {
+            orSchemaDescription.values.push(schema.describe());
+        }
+        return orSchemaDescription;
     }
     validate(_data, _errors, _options) {
         const orErrors = {};

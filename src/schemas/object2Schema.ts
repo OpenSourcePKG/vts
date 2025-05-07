@@ -1,15 +1,31 @@
-import {ExtractSchemaResultType, Schema, SchemaErrors} from '../schema.js';
+import {ExtractSchemaResultType, Schema, SchemaDescription, SchemaErrors, SchemaOptions} from '../schema.js';
 import {Vts} from '../vts.js';
 import {StringSchema} from './stringSchema.js';
+
+export interface Object2SchemaDescription extends SchemaDescription {
+  key: SchemaDescription;
+  type: 'object2';
+  value: SchemaDescription;
+}
 
 export class Object2Schema<KeySchema extends StringSchema, ValuesSchema extends Schema<unknown>>
   extends Schema<unknown> {
 
   public constructor(
     private readonly _keySchema: KeySchema,
-    private readonly _valuesSchema: ValuesSchema
+    private readonly _valuesSchema: ValuesSchema,
+    _options?: SchemaOptions
   ) {
-    super();
+    super(_options);
+  }
+
+  public override describe(): Object2SchemaDescription {
+    return {
+      ...super.describe(),
+      key: this._keySchema.describe(),
+      type: 'object2',
+      value: this._valuesSchema.describe()
+    };
   }
 
   public validate(
