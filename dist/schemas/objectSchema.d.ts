@@ -32,7 +32,7 @@ export declare class ObjectSchema<Items extends ObjectSchemaItems> extends Schem
     readonly _schemaItems: Items;
     constructor(_schemaItems: Items, _options?: ObjectSchemaOptions);
     extend<Items2 extends ObjectSchemaItems>(_schemaItems: Items2, _options?: ObjectSchemaOptions): ObjectSchema<Items & Items2>;
-    describe(): SchemaDescription;
+    describe(): ObjectSchemaDescription;
     validate(_data: unknown, _errors: SchemaErrors, _options?: ObjectSchemaOptions): _data is RequiredItems<Items> & OptionalItems<Items>;
 }
 export {};

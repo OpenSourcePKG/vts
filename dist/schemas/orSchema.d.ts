@@ -6,6 +6,6 @@ export interface OrSchemaDescription extends SchemaDescription {
 export declare class OrSchema<S extends Schema<unknown>> extends Schema<ExtractSchemaResultType<S>> {
     private readonly _types;
     constructor(_types: S[], _options?: SchemaOptions);
-    describe(): SchemaDescription;
+    describe(): OrSchemaDescription;
     validate(_data: unknown, _errors: SchemaErrors, _options?: SchemaOptions): _data is ExtractSchemaResultType<S>;
 }

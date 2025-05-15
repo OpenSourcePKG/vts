@@ -2,6 +2,7 @@ import { Schema, SchemaOptions } from './schema.js';
 import { ArraySchema } from './schemas/arraySchema.js';
 import { BooleanSchema } from './schemas/booleanSchema.js';
 import { DateSchema } from './schemas/dateSchema.js';
+import { EnumSchema } from './schemas/enumSchema.js';
 import { EqualSchema } from './schemas/equalSchema.js';
 import { ErrorSchema } from './schemas/errorSchema.js';
 import { InstanceofSchema } from './schemas/instanceofSchema.js';
@@ -31,7 +32,7 @@ export declare class Vts {
     static date(_options?: SchemaOptions): DateSchema;
     static dateString(_options?: StringSchemaOptions): StringSchema;
     static discriminator<S extends Schema<unknown>>(_schema: S): DiscriminatorSchema<S>;
-    static enum<T>(_value: T[] | Record<any, T>, _options?: SchemaOptions): OrSchema<EqualSchema<T>>;
+    static enum<T extends string>(_value: Record<string, T>, _options?: SchemaOptions): EnumSchema<T>;
     static equal<S>(_value: S, _options?: SchemaOptions): EqualSchema<S>;
     static error(_options?: SchemaOptions): ErrorSchema;
     static false(_options?: SchemaOptions): EqualSchema<false>;

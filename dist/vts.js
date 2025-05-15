@@ -1,6 +1,7 @@
 import { ArraySchema } from './schemas/arraySchema.js';
 import { BooleanSchema } from './schemas/booleanSchema.js';
 import { DateSchema } from './schemas/dateSchema.js';
+import { EnumSchema } from './schemas/enumSchema.js';
 import { EqualSchema } from './schemas/equalSchema.js';
 import { ErrorSchema } from './schemas/errorSchema.js';
 import { InstanceofSchema } from './schemas/instanceofSchema.js';
@@ -34,7 +35,7 @@ export class Vts {
         return new DiscriminatorSchema(_schema);
     }
     static enum(_value, _options) {
-        return Vts.or([...Object.values(_value).map((_val) => Vts.equal(_val))], _options);
+        return new EnumSchema(_value, _options);
     }
     static equal(_value, _options) {
         return new EqualSchema(_value, _options);
