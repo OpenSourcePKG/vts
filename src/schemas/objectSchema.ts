@@ -59,7 +59,7 @@ export class ObjectSchema<Items extends ObjectSchemaItems> extends Schema<unknow
     });
   }
 
-  public override describe(): SchemaDescription {
+  public override describe(): ObjectSchemaDescription {
     const objectSchemaDescription: ObjectSchemaDescription = {
       ...super.describe(),
       items: {},

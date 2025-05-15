@@ -14,7 +14,7 @@ export class OrSchema<S extends Schema<unknown>> extends Schema<ExtractSchemaRes
     super(_options);
   }
 
-  public override describe(): SchemaDescription {
+  public override describe(): OrSchemaDescription {
     const schemaDescription = super.describe();
 
     const orSchemaDescription: OrSchemaDescription = {
