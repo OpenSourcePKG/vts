@@ -7,8 +7,8 @@ enum Colors {
 }
 
 enum CruiseControl {
-  premium = 'premium',
-  simple = 'simple'
+  premium = '0',
+  simple = '1'
 }
 
 const carSchema = Vts.object({
@@ -46,4 +46,5 @@ const carSchema = Vts.object({
   description: 'the main data object'
 });
 
-console.log(JSON.stringify(carSchema.describe(), null, 2));
+const description = carSchema.describe();
+console.log(JSON.stringify(description, null, 2));

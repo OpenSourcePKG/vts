@@ -2,6 +2,7 @@ import {Schema, SchemaOptions} from './schema.js';
 import {ArraySchema} from './schemas/arraySchema.js';
 import {BooleanSchema} from './schemas/booleanSchema.js';
 import {DateSchema} from './schemas/dateSchema.js';
+import {EnumSchema} from './schemas/enumSchema.js';
 import {EqualSchema} from './schemas/equalSchema.js';
 import {ErrorSchema} from './schemas/errorSchema.js';
 import {InstanceofSchema} from './schemas/instanceofSchema.js';
@@ -55,11 +56,11 @@ export class Vts {
     return new DiscriminatorSchema(_schema);
   }
 
-  public static enum<T>(
-    _value: T[] | Record<any, T>,
+  public static enum<T extends string>(
+    _value: Record<string, T>,
     _options?: SchemaOptions
-  ): OrSchema<EqualSchema<T>> {
-    return Vts.or([...Object.values(_value).map((_val) => Vts.equal(_val))], _options);
+  ): EnumSchema<T> {
+    return new EnumSchema(_value, _options);
   }
 
   public static equal<S>(
