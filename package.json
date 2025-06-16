@@ -15,9 +15,21 @@
     "tsx": "^4.19.3",
     "typescript": "^5.8.2"
   },
+  "directories": {
+    "test": "tests"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
   "homepage": "https://github.com/OpenSourcePKG/vts#readme",
+  "keywords": [
+    "javascript", "typescript", "schema", "validation", "validator"
+  ],
   "license": "MIT",
-  "main": "dist/index.js",
   "name": "vts",
   "repository": {
     "type": "git",

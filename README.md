@@ -1,10 +1,22 @@
+![Version](https://img.shields.io/badge/Version-4.0.0-blue)
+![Node.js >=20](https://img.shields.io/badge/Node.js-%3E%3D20-brightgreen)
+![type: module](https://img.shields.io/badge/type-module-orange)
+![ESM Only](https://img.shields.io/badge/Module-ESM--only-success)
+
+
+# VTS
+<p align="center">
+<img src="doc/images/logo.png" width="300px" style="border-radius: 15px;transition: transform .2s;object-fit: cover;">
+<br><br>
 Vts is a data type validation library written entirely in TypeScript. Its main focus lies on validating the types of the
 given data (e.g. "is x a string") and not so much on validating the data itself (e.g. "is the length of the string x
 equal to y") to ensure that external data is compatible with your own source code.
-
+<br><br>
 The package consists of some basic type guarded validator methods like isString() and isFunction() that can be accessed
 via the main Vts object. Most of these validators are also encapsulated in schema classes which can be used to create
 complex schemas. The main strategy when validating those complex schemas is to be as strict as possible.
+</p>
+
 
 ## Installation
 
