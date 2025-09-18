@@ -3,10 +3,10 @@ import {Vts} from '../vts.js';
 
 export interface EnumSchemaDescription extends SchemaDescription {
   type: 'enum';
-  values: Record<string, SchemaDescription>;
+  values: Record<number | string, SchemaDescription>;
 }
 
-export class EnumSchema<T extends string> extends Schema<T> {
+export class EnumSchema<T extends number | string> extends Schema<T> {
 
   public constructor(
     private readonly _enum: Record<string, T>,

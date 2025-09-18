@@ -56,7 +56,7 @@ export class Vts {
     return new DiscriminatorSchema(_schema);
   }
 
-  public static enum<T extends string>(
+  public static enum<T extends number | string>(
     _value: Record<string, T>,
     _options?: SchemaOptions
   ): EnumSchema<T> {
