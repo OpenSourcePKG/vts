@@ -6,7 +6,8 @@ import {BooleanData, BooleanSchema} from './types/boolean.js';
 import {DateData, DateSchema} from './types/date.js';
 import {DateStringData, DateStringSchema} from './types/dateString.js';
 import {DateStringInvalidData} from './types/dateStringInvalid.js';
-import {EnumData, EnumSchema} from './types/enum.js';
+import {EnumNumberData, EnumNumberSchema} from './types/enumNumber.js';
+import {EnumStringData, EnumStringSchema} from './types/enumString.js';
 import {EqualToEmptyStringData, EqualToEmptyStringSchema} from './types/equalToEmptyString.js';
 import {EqualToNullData, EqualToNullSchema} from './types/equalToNull.js';
 import {ErrorData, ErrorSchema} from './types/error.js';
@@ -33,7 +34,8 @@ enum SchemaType {
   dateString = 'dateString',
   equalToEmptyString = 'equalToEmptyString',
   equalToNull = 'equalToNull',
-  enum = 'enum',
+  enumNumber = 'enumNumber',
+  enumString = 'enumString',
   error = 'error',
   instanceOfAbstractClass1 = 'instanceOfAbstractClass1',
   instanceOfClass1 = 'instanceOfClass1',
@@ -60,7 +62,8 @@ enum DataType {
   dateStringInvalid = 'dateStringInvalid',
   equalToEmptyString = 'equalToEmptyString',
   equalToNull = 'equalToNull',
-  enum = 'enum',
+  enumNumber = 'enumNumber',
+  enumString = 'enumString',
   error = 'error',
   instanceOfAbstractClass1 = 'instanceOfAbstractClass1',
   instanceOfClass1 = 'instanceOfClass1',
@@ -88,7 +91,8 @@ const testSchemas: {
   [SchemaType.equalToEmptyString]: EqualToEmptyStringSchema,
   [SchemaType.equalToNull]: EqualToNullSchema,
   [SchemaType.error]: ErrorSchema,
-  [SchemaType.enum]: EnumSchema,
+  [SchemaType.enumNumber]: EnumNumberSchema,
+  [SchemaType.enumString]: EnumStringSchema,
   [SchemaType.instanceOfAbstractClass1]: InstanceOfAbstractClass1Schema,
   [SchemaType.instanceOfClass1]: InstanceOfClass1Schema,
   [SchemaType.instanceOfClass2]: InstanceOfClass2Schema,
@@ -116,7 +120,8 @@ const testData: {
   [DataType.dateStringInvalid]: DateStringInvalidData,
   [DataType.equalToEmptyString]: EqualToEmptyStringData,
   [DataType.equalToNull]: EqualToNullData,
-  [DataType.enum]: EnumData,
+  [DataType.enumNumber]: EnumNumberData,
+  [DataType.enumString]: EnumStringData,
   [DataType.error]: ErrorData,
   [DataType.instanceOfAbstractClass1]: InstanceOfAbstractClass1Data,
   [DataType.instanceOfClass1]: InstanceOfClass1Data,
@@ -163,8 +168,11 @@ const tests: {
     [DataType.equalToNull]: true,
     [DataType.null]: true
   },
-  [SchemaType.enum]: {
-    [DataType.enum]: true
+  [SchemaType.enumNumber]: {
+    [DataType.enumNumber]: true
+  },
+  [SchemaType.enumString]: {
+    [DataType.enumString]: true
   },
   [SchemaType.error]: {
     [DataType.error]: true
@@ -183,6 +191,7 @@ const tests: {
     [DataType.null]: true
   },
   [SchemaType.number]: {
+    [DataType.enumNumber]: true,
     [DataType.number]: true
   },
   [SchemaType.object2Simple]: {
@@ -205,7 +214,7 @@ const tests: {
     [DataType.dateStringInvalid]: true,
     [DataType.equalToEmptyString]: true,
     [DataType.equalToNull]: true,
-    [DataType.enum]: true,
+    [DataType.enumString]: true,
     [DataType.null]: true,
     [DataType.string]: true
   },
@@ -216,7 +225,7 @@ const tests: {
     [DataType.dateString]: true,
     [DataType.dateStringInvalid]: true,
     [DataType.equalToEmptyString]: true,
-    [DataType.enum]: true,
+    [DataType.enumString]: true,
     [DataType.string]: true
   },
   [SchemaType.undefined]: {
