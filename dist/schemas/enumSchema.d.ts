@@ -1,9 +1,9 @@
 import { Schema, SchemaDescription, SchemaErrors, SchemaOptions } from '../schema.js';
 export interface EnumSchemaDescription extends SchemaDescription {
     type: 'enum';
-    values: Record<string, SchemaDescription>;
+    values: Record<number | string, SchemaDescription>;
 }
-export declare class EnumSchema<T extends string> extends Schema<T> {
+export declare class EnumSchema<T extends number | string> extends Schema<T> {
     private readonly _enum;
     constructor(_enum: Record<string, T>, _options?: SchemaOptions);
     describe(): EnumSchemaDescription;
