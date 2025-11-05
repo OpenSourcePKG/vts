@@ -1,7 +1,6 @@
 import { Schema } from '../schema.js';
 import { Vts } from '../vts.js';
 export class ArraySchema extends Schema {
-    _elementsSchema;
     constructor(_elementsSchema, _options) {
         super(_options);
         this._elementsSchema = _elementsSchema;

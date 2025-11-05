@@ -1,5 +1,4 @@
 export class Schema {
-    _options;
     constructor(_options) {
         this._options = _options;
     }

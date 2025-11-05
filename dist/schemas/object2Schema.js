@@ -1,8 +1,6 @@
 import { Schema } from '../schema.js';
 import { Vts } from '../vts.js';
 export class Object2Schema extends Schema {
-    _keySchema;
-    _valuesSchema;
     constructor(_keySchema, _valuesSchema, _options) {
         super(_options);
         this._keySchema = _keySchema;

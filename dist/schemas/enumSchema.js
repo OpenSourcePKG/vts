@@ -1,7 +1,6 @@
 import { Schema } from '../schema.js';
 import { Vts } from '../vts.js';
 export class EnumSchema extends Schema {
-    _enum;
     constructor(_enum, _options) {
         super(_options);
         this._enum = _enum;

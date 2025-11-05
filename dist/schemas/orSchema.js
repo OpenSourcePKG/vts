@@ -1,6 +1,5 @@
 import { Schema } from '../schema.js';
 export class OrSchema extends Schema {
-    _types;
     constructor(_types, _options) {
         super(_options);
         this._types = _types;

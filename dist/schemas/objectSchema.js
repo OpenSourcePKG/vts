@@ -3,7 +3,6 @@ import { Vts } from '../vts.js';
 import { DiscriminatorSchema } from './objectSchema/discriminatorSchema.js';
 import { OptionalSchema } from './objectSchema/optionalSchema.js';
 export class ObjectSchema extends Schema {
-    _schemaItems;
     constructor(_schemaItems, _options) {
         super(_options);
         this._schemaItems = _schemaItems;
