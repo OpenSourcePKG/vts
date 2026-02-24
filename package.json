@@ -6,13 +6,13 @@
   "description": " A data validator fully written in Typescript.",
   "devDependencies": {
     "@stylistic/eslint-plugin-ts": "^4.4.1",
-    "@types/node": "^24.10.0",
-    "@typescript-eslint/eslint-plugin": "^8.46.3",
-    "@typescript-eslint/parser": "^8.46.3",
-    "eslint": "^9.39.1",
+    "@types/node": "^24.10.13",
+    "@typescript-eslint/eslint-plugin": "^8.56.1",
+    "@typescript-eslint/parser": "^8.56.1",
+    "eslint": "^9.39.3",
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-prefer-arrow": "^1.2.3",
-    "tsx": "^4.20.6",
+    "tsx": "^4.21.0",
     "typescript": "^5.9.3"
   },
   "directories": {
@@ -43,9 +43,9 @@
     "compile": "tsc --project src/tsconfig.json",
     "tests/describe": "tsx tests/describe.ts",
     "tests/index": "tsx tests/index.ts",
-    "update": "pnpm update && pnpm outdated"
+    "update": "pnpm update && pnpm prune && pnpm outdated"
   },
   "type": "module",
   "types": "dist/index.d.ts",
-  "version": "4.0.0"
+  "version": "4.1.0"
 }
