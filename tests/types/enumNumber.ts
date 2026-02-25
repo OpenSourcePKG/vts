@@ -7,9 +7,4 @@ enum EnumNumber {
 
 export const EnumNumberSchema = Vts.enum(EnumNumber);
 
-export const EnumNumberData:unknown = EnumNumber.KEY1;
-
-
-if (EnumNumberSchema.validate(EnumNumberData,[]) ) {
-  EnumNumberData
-}
+export const EnumNumberData: unknown = EnumNumber.KEY1;
