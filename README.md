@@ -5,8 +5,8 @@
 
 
 # VTS
-<p align="center">
-<img src="doc/images/logo.png" width="300px" style="border-radius: 15px;transition: transform .2s;object-fit: cover;">
+<p style="text-align: center">
+<img alt="Vts Logo" src="doc/images/logo.png" width="300px">
 <br><br>
 Vts is a data type validation library written entirely in TypeScript. Its main focus lies on validating the types of the
 given data (e.g. "is x a string") and not so much on validating the data itself (e.g. "is the length of the string x
@@ -574,11 +574,11 @@ Vts.undefined(): UndefinedSchema
 #### SchemaOptions
 
 This interface encapsulates the basic options of all schemas like the description that is used when the schema is
-described via `someSchema.describe()`
+described via `someSchema.describe()` (see Notes for usage).
 
 #### StringSchemaOptions
 
-Extends [SchemaOptions](#SchemaOptions) by an optional test callback is used during validation. If the test
+Extends [SchemaOptions](#SchemaOptions) by an optional test callback that is used during validation. If the test
 fails an error will be returned.
 
 #### ObjectSchemaOptions
@@ -592,6 +592,12 @@ Extends [SchemaOptions](#SchemaOptions) by:
   object and not an object-like see Vts.isObject.
 
 ### Notes
+
+#### .describe()
+
+Every schema has the method `.describe()` that outputs a visual respresentation of the structure of the schema based on
+the actual structure and optional `description` options given to each individual schema. For an example run 
+`describe.ts` in the `tests` subfolder.
 
 #### Vts.dateString()
 
