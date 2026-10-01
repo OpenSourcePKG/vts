@@ -6,6 +6,7 @@ export class UnknownSchema extends Schema {
             type: 'unknown'
         };
     }
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     validate(_data) {
         return true;
     }

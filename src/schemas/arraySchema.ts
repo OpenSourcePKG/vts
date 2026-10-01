@@ -37,9 +37,7 @@ export class ArraySchema<S extends Schema<unknown>> extends Schema<ExtractSchema
       return true;
     }
 
-    const arrayErrors: {
-      [key: string]: SchemaErrors;
-    } = {};
+    const arrayErrors: Record<string, SchemaErrors> = {};
 
     for (const [key, element] of Object.entries(_data)) {
       const errors: SchemaErrors = [];

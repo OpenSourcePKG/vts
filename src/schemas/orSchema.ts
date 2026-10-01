@@ -35,9 +35,7 @@ export class OrSchema<S extends Schema<unknown>> extends Schema<ExtractSchemaRes
     _errors: SchemaErrors,
     _options?: SchemaOptions
   ): _data is ExtractSchemaResultType<S> {
-    const orErrors: {
-      [key: string]: SchemaErrors;
-    } = {};
+    const orErrors: Record<string, SchemaErrors> = {};
 
     for (const [key, type] of this._types.entries()) {
       const errors: SchemaErrors = [];

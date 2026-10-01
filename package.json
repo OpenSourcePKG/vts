@@ -5,15 +5,13 @@
   },
   "description": " A data validator fully written in Typescript.",
   "devDependencies": {
-    "@stylistic/eslint-plugin-ts": "^4.4.1",
-    "@types/node": "^24.13.3",
-    "@typescript-eslint/eslint-plugin": "^8.67.0",
-    "@typescript-eslint/parser": "^8.67.0",
-    "eslint": "^9.39.5",
-    "eslint-plugin-import": "^2.32.0",
-    "eslint-plugin-prefer-arrow": "^1.2.3",
-    "tsx": "^4.23.12",
-    "typescript": "^6.0.3"
+    "@eslint/js": "^10.0.1",
+    "@stylistic/eslint-plugin": "^5.10.0",
+    "@types/node": "^24.19.0",
+    "eslint": "^10.11.0",
+    "tsx": "^4.23.15",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.71.0"
   },
   "directories": {
     "test": "tests"

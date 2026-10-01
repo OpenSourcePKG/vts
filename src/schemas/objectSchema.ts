@@ -3,9 +3,7 @@ import {RecordOf, Vts} from '../vts.js';
 import {DiscriminatorSchema} from './objectSchema/discriminatorSchema.js';
 import {OptionalSchema} from './objectSchema/optionalSchema.js';
 
-export interface ObjectSchemaItems {
-  [key: string]: Schema<unknown>;
-}
+export type ObjectSchemaItems = Record<string, Schema<unknown>>;
 
 type PickByValue<Base extends RecordOf<unknown>, Condition> = Pick<Base, {
   [Key in keyof Base]: Base[Key] extends Condition ? Key : never
@@ -87,9 +85,7 @@ export class ObjectSchema<Items extends ObjectSchemaItems> extends Schema<unknow
       return false;
     }
 
-    const objectErrors: {
-      [key: string]: SchemaErrors;
-    } = {};
+    const objectErrors: Record<string, SchemaErrors> = {};
 
     for (const schemaKey of Object.keys(this._schemaItems)) {
       const schema = this._schemaItems[schemaKey];

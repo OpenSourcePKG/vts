@@ -37,9 +37,7 @@ export class Object2Schema<KeySchema extends StringSchema, ValuesSchema extends 
       return false;
     }
 
-    const objectErrors: {
-      [key: string]: SchemaErrors;
-    } = {};
+    const objectErrors: Record<string, SchemaErrors> = {};
 
     for (const [key, value] of Object.entries(_data)) {
       const entryErrors: SchemaErrors = [];

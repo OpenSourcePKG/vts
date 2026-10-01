@@ -79,9 +79,7 @@ enum DataType {
   undefined = 'undefined'
 }
 
-const testSchemas: {
-  [key in SchemaType]: Schema<unknown>
-} = {
+const testSchemas: Record<SchemaType, Schema<unknown>> = {
   [SchemaType.arrayOfBoolean]: ArrayOfBooleanSchema,
   [SchemaType.arrayOfNumberOrString]: ArrayOfNumberOrStringSchema,
   [SchemaType.arrayOfString]: ArrayOfStringSchema,
@@ -108,9 +106,7 @@ const testSchemas: {
   [SchemaType.undefined]: UndefinedSchema
 };
 
-const testData: {
-  [key in DataType]: unknown
-} = {
+const testData: Record<DataType, unknown> = {
   [DataType.arrayOfBoolean]: ArrayOfBooleanData,
   [DataType.arrayOfNumberOrString]: ArrayOfNumberOrStringData,
   [DataType.arrayOfString]: ArrayOfStringData,
@@ -137,11 +133,7 @@ const testData: {
   [DataType.undefined]: UndefinedData
 };
 
-const tests: {
-  [schemaType in SchemaType]: {
-    [dataType in DataType]?: boolean;
-  }
-} = {
+const tests: Record<SchemaType, Partial<Record<DataType, boolean>>> = {
   [SchemaType.arrayOfBoolean]: {
     [DataType.arrayOfBoolean]: true
   },

@@ -1,8 +1,8 @@
 export type ExtractSchemaResultType<Type> = Type extends Schema<infer X> ? X : never;
 export type SchemaErrors = (string | Record<string, SchemaErrors>)[];
-export type SchemaOptions = {
+export interface SchemaOptions {
   description?: string;
-};
+}
 
 export interface SchemaDescription {
   description?: string;

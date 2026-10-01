@@ -38,9 +38,7 @@ export class EnumSchema<T extends number | string> extends Schema<T> {
     _errors: SchemaErrors,
     _options?: SchemaOptions
   ): _data is T {
-    const enumErrors: {
-      [key: string]: SchemaErrors;
-    } = {};
+    const enumErrors: Record<string, SchemaErrors> = {};
 
     for (const [key, type] of Object.entries(this._enum)) {
       const errors: SchemaErrors = [];
