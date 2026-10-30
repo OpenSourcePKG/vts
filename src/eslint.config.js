@@ -18,6 +18,7 @@ export default defineConfig([
     },
     rules: {
       // typescript-eslint rules
+      '@typescript-eslint/explicit-function-return-type': 'error',
       '@typescript-eslint/no-explicit-any': 'off', // TODO: maybe omit this rule and try to fix all problems
       // eslint stylistic rules
       '@stylistic/arrow-parens': [
