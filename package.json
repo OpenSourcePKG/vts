@@ -7,12 +7,12 @@
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@stylistic/eslint-plugin": "^5.10.0",
-    "@types/node": "^24.19.0",
-    "eslint": "^10.11.0",
+    "@types/node": "^26.6.6",
+    "eslint": "^10.14.0",
     "pkg-eslint-config": "github:OpenSourcePKG/pkg-eslint-config",
     "tsx": "^4.23.15",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.71.0"
+    "typescript-eslint": "^8.72.1"
   },
   "directories": {
     "test": "tests"
@@ -46,5 +46,5 @@
   },
   "type": "module",
   "types": "dist/index.d.ts",
-  "version": "4.2.0"
+  "version": "5.0.0"
 }
