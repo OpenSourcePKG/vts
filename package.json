@@ -9,6 +9,7 @@
     "@stylistic/eslint-plugin": "^5.10.0",
     "@types/node": "^24.19.0",
     "eslint": "^10.11.0",
+    "pkg-eslint-config": "github:OpenSourcePKG/pkg-eslint-config",
     "tsx": "^4.23.15",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.71.0"

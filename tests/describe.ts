@@ -12,6 +12,14 @@ enum CruiseControl {
 }
 
 const carSchema = Vts.object({
+  _test1: Vts.undefined(),
+  _test2: Vts.unknown(),
+  _test3: Vts.regexp(),
+  _test4: Vts.null(),
+  _test5: Vts.instanceof(Vts),
+  _test6: Vts.error(),
+  _test7: Vts.date(),
+  _test8: Vts.array(Vts.string()),
   colors: Vts.enum(Colors, {
     description: 'Possible color variations.'
   }),
@@ -33,15 +41,7 @@ const carSchema = Vts.object({
   speedMax: Vts.number(),
   tires: Vts.number({
     description: 'Amount of tires.'
-  }),
-  _test1: Vts.undefined(),
-  _test2: Vts.unknown(),
-  _test3: Vts.regexp(),
-  _test4: Vts.null(),
-  _test5: Vts.instanceof(Vts),
-  _test6: Vts.error(),
-  _test7: Vts.date(),
-  _test8: Vts.array(Vts.string())
+  })
 }, {
   description: 'the main data object'
 });
