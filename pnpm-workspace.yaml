@@ -1,2 +1,5 @@
 allowBuilds:
   esbuild: true
+minimumReleaseAgeExclude:
+  - '@typescript-eslint/scope-manager@8.73.0'
+  - '@typescript-eslint/types@8.73.0'
